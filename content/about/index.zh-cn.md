@@ -18,18 +18,16 @@ draft: false
 ### 个人简介
 
 - 姓名：**王诚强**
-- 昵称：whitefirer、mortywang、strcat
-- 联系方式：[发邮件给我](mailto:whitefirer@gmail.com) 或者以下方式:  
-[![Gmail](https://img.shields.io/badge/-whitefirer@gmail.com-ea4335?style=flat&logo=Gmail&logoColor=ffffff)](mailto:whitefirer@gmail.com)
-[![Wechat](https://img.shields.io/badge/-whitefirer-5fcd73?style=flat&logo=Wechat&logoColor=ffffff)](./img/wechat.jpg)
-[![Zhihu](https://img.shields.io/badge/-whitefirer-2369f6?style=flat&logo=Zhihu&logoColor=ffffff)](https://www.zhihu.com/people/whitefirer?_blank)
-- 🔭 我正在 *`腾讯`* 工作；
-- 🌱 我正在努力学习以成为优秀的 *`云原生开发者`*、 *`基础架构工程师`*、 *`架构师`*、*`技术管理者`*；
+- 昵称：whitefirer、mortywang、strcat、一只流浪猫
+- 🔭 我正在 *`腾讯`* 工作，研究并开发基础架构、云原生、服务网格，同时是[Aeraki-Mesh](https://github.com/aeraki-mesh/aeraki)的Maitainer；
+- 🌱 我正在努力学习以成为**优秀**的 *`云原生开发者`*、 *`基础架构工程师`*、 *`架构师`*、*`技术管理者`*；
 - 👯 我热衷为伟大的项目积极做出贡献，或者说想创造伟大的项目；
 - 💬 可以与我一起探讨 *`云原生`* 、 *`架构设计`*、乃至一切 *`有趣的技术`* 😄；
 - ⚡ 显而易见: 我是一名 **GEEK**；
-
-目前在腾讯音乐部门，研究开发基础架构、云原生、服务网格，同时是[Aeraki-Mesh](https://github.com/aeraki-mesh/aeraki)的Maitainer。
+- 联系方式：[发邮件给我](mailto:whitefirer@gmail.com) 或者以下方式↓  
+[![Gmail](https://img.shields.io/badge/-whitefirer@gmail.com-ea4335?style=flat&logo=Gmail&logoColor=ffffff)](mailto:whitefirer@gmail.com)
+[![Wechat](https://img.shields.io/badge/-whitefirer-5fcd73?style=flat&logo=Wechat&logoColor=ffffff)](wechat.jpg)
+[![Zhihu](https://img.shields.io/badge/-whitefirer-2369f6?style=flat&logo=Zhihu&logoColor=ffffff)](https://www.zhihu.com/people/whitefirer?_blank)
 
 ### 演讲和讲义
 
@@ -119,12 +117,5 @@ draft: false
 ![Android](https://img.shields.io/badge/-Android-5f5f5f?style=flat&logo=android&labelColor=ffffff)
 ![iOS](https://img.shields.io/badge/-iOS-5f5f5f?style=flat&logo=ios&logoColor=000000&labelColor=ffffff)
 
-<!-- ![image](https://img.shields.io/badge/AMD-Radeon-Pro_555X?style=for-the-badge&logo=amd&logoColor=white)
-![image](https://img.shields.io/badge/AMD-Ryzen_5_1600-ED1C24?style=for-the-badge&logo=amd&logoColor=white) 
- -->
-<!-- 
-[![My Skills](https://skillicons.dev/icons?i=kubernetes,istio,envoy,nginx&theme=light)](https://skillicons.dev)
-[![My Skills](https://skillicons.dev/icons?i=go,python,c,cpp,nodejs&theme=light)](https://skillicons.dev)</br>
-[![My Skills](https://skillicons.dev/icons?i=postgres,mysql,mongo,redis,kafka,zookeeper&theme=light)](https://skillicons.dev)</br>
-[![My Skills](https://skillicons.dev/icons?i=react,vue,bootstrap,jquery&theme=light)](https://skillicons.dev) -->
-<img src="https://github-profile-trophy.vercel.app/?username=whitefirer&theme=vue&column=7&margin-w=10" alt="logo" height="160" align="center" />
+### WeChat 
+![wechat](wechat.jpg)
