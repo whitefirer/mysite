@@ -43,12 +43,18 @@ enableEmoji = true
 # 忽略一些构建错误
 ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
+[markup]
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
 # Author config
 # 作者配置
 [author]
   name = "whitefirer"
   email = "whitefirer@gmail.com"
-  link = ""
+  link = "https://github.com/whitefirer"
 
 # Menu config
 # 菜单配置
@@ -59,6 +65,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     languageCode = "zh-CN"
     languageName = "简体中文"
     hasCJKLanguage = true
+    subtitle = [
+    "我喜欢前沿技术并为之疯狂", 
+    "我正从事于云原生和 DevOps",
+    "我主要用 Python 提高效率，用 Go 做云原生",
+    "我认为兑现自己价值是最让人感到欣喜的事",
+    "比努力更难的是不如何努力，所以格局很重要",
+    "我不会说做不到，因为我总是能做到",
+  ]
     [[languages.zh-cn.menu.main]]
       weight = 1
       identifier = "posts"
@@ -329,7 +343,12 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       title = "whitefirer"
       # subtitle shown in home page (HTML format is supported)
       # 主页显示的网站副标题 (允许 HTML 格式)
-      subtitle = "Go big or go home."
+      subtitle = [
+    "Go big or go home", 
+    "Cloud Native and Architecture Design",
+    "人生苦短，何不用python. 星汉灿烂，道阻且长go.",
+    "难度即价值所在",
+  ]
       # whether to use typeit animation for subtitle
       # 是否为副标题显示打字机动画
       typeit = true

@@ -46,6 +46,8 @@ draft: false
 
 Ten years of experience, rich experience, entrepreneurial experience, cloud native and infrastructure transformation from 0 to 1, and team building from 0 to 1. I'm creative, able to consider issues from the overall perspective, grasp the key points of stability and efficiency, and actually promote the implementation. He has the geek spirit, keeps learning enthusiasm for new technologies, pays attention to the development of CNCF community, is keen on open source business, and learns and participates in the development of open source projects, Constantly get inspiration and make progress through communication with others.
 
+<img align="right" src="https://skillicons.dev/icons?i=go,python,c,cpp,cs,rust,webassembly,nodejs,javascript,typescript,bash,markdown,fastapi,flask,django,postgres,mysql,mongo,redis,react,vue,bootstrap,jquery,git,kubernetes,docker,vim,vscode&perline=4&theme=light" />
+
 #### Languages  
 [![Go](https://img.shields.io/badge/-Go-5f5f5f?style=flat&logo=go&logoColor=85d2e3&labelColor=ffffff)](https://go.dev/)
 [![Python](https://img.shields.io/badge/-Python-5f5f5f?style=flat&logo=python&labelColor=ffffff)](https://www.python.org/)
@@ -119,5 +121,10 @@ Ten years of experience, rich experience, entrepreneurial experience, cloud nati
 ![Android](https://img.shields.io/badge/-Android-5f5f5f?style=flat&logo=android&labelColor=ffffff)
 ![iOS](https://img.shields.io/badge/-iOS-5f5f5f?style=flat&logo=ios&logoColor=000000&labelColor=ffffff)
 
+
+<img align="right" src="https://github-readme-stats.vercel.app/api?username=whitefirer&show_icons=true&theme=vue" alt="whitefirer's github stats" />
+
 ### WeChat 
-![wechat](wechat.jpg)
+<img src="wechat.jpg" alt="wechat" height="160" align="center" />
+
+<img src="https://github-profile-trophy.vercel.app/?username=whitefirer&theme=vue&column=7&margin-w=10" alt="logo" height="160" align="center" />

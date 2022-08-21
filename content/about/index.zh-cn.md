@@ -45,6 +45,8 @@ draft: false
 
 十年从业经验，阅历丰富，有着创业经历，从0到1实现了云原生和基础架构改造，也从0到1搭建过团队，并富有创造力，能够从全局出发考虑问题，抓住稳定和高效的重点，并实际推进落地，具有Geek精神，对新技术保持学习热情，关注CNCF社区的发展，热衷于开源事业，学习并参与开源项目的开发，不断在与他人的交流中获得灵感共同进步。
 
+<img align="right" src="https://skillicons.dev/icons?i=go,python,c,cpp,cs,rust,webassembly,nodejs,javascript,typescript,bash,markdown,fastapi,flask,django,postgres,mysql,mongo,redis,react,vue,bootstrap,jquery,git,kubernetes,docker,vim,vscode&perline=4&theme=light" />
+
 #### Languages  
 [![Go](https://img.shields.io/badge/-Go-5f5f5f?style=flat&logo=go&logoColor=85d2e3&labelColor=ffffff)](https://go.dev/)
 [![Python](https://img.shields.io/badge/-Python-5f5f5f?style=flat&logo=python&labelColor=ffffff)](https://www.python.org/)
@@ -118,5 +120,9 @@ draft: false
 ![Android](https://img.shields.io/badge/-Android-5f5f5f?style=flat&logo=android&labelColor=ffffff)
 ![iOS](https://img.shields.io/badge/-iOS-5f5f5f?style=flat&logo=ios&logoColor=000000&labelColor=ffffff)
 
+<img align="right" src="https://github-readme-stats.vercel.app/api?username=whitefirer&show_icons=true&theme=vue" alt="whitefirer's github stats" />
+
 ### WeChat 
-![wechat](wechat.jpg)
+<img src="wechat.jpg" alt="wechat" height="160" align="center" />
+
+<img src="https://github-profile-trophy.vercel.app/?username=whitefirer&theme=vue&column=7&margin-w=10" alt="logo" height="160" align="center" />
