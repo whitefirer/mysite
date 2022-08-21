@@ -1,7 +1,7 @@
 ---
 title: "关于我"
 date: 2022-08-21T18:58:55+08:00
-draft: true
+draft: false
 ---
 
 ### 个人简介
