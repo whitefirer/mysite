@@ -29,7 +29,7 @@ jobs: # 工作流
           uses: peaceiris/actions-gh-pages@v3
           with:
               PERSONAL_TOKEN: ${{ secrets.BLOG_TOKEN }}
-              EXTERNAL_REPOSITORY: whitefirer/whitefrer.github.io
+              EXTERNAL_REPOSITORY: whitefirer/whitefirer.github.io
               PUBLISH_BRANCH: main
               PUBLISH_DIR: ./public
               commit_message: ${{ github.event.head_commit.message }}
