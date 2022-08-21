@@ -334,21 +334,21 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       enable = true
       # Gravatar Email for preferred avatar in home page
       # Gravatar 邮箱，用于优先在主页显示的头像
-      gravatarEmail = "whitefirer@gmail.com"
+      gravatarEmail = ""
       # URL of avatar shown in home page
       # 主页显示头像的 URL
-      avatarURL = ""
+      avatarURL = "avatar.png"
       # title shown in home page (HTML format is supported)
       # 主页显示的网站标题 (支持 HTML 格式)
       title = "whitefirer"
       # subtitle shown in home page (HTML format is supported)
       # 主页显示的网站副标题 (允许 HTML 格式)
       subtitle = [
-    "Go big or go home", 
-    "Cloud Native and Architecture Design",
-    "人生苦短，何不用python. 星汉灿烂，道阻且长go.",
-    "难度即价值所在",
-  ]
+        "Go big or go home", 
+        "Cloud Native and Architecture Design",
+        "人生苦短，何不用python. 星汉灿烂，道阻且长go.",
+        "难度即价值所在",
+      ]
       # whether to use typeit animation for subtitle
       # 是否为副标题显示打字机动画
       typeit = true
