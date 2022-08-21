@@ -1,0 +1,17 @@
+name: SCRIPT_NAME 
+
+on:  # 触发时机
+  workflow_dispatch: # 手动触发
+  push: # 代码提交触发
+    branches: # 在哪个分支
+      - main	# 在main分支
+  pull_request: # PR提交时触发
+
+jobs: # 工作流
+  first-job: # 工作名称
+    runs-on: ubuntu-latest # 运行在哪个环境中
+    steps: # 步骤
+      - name: go to zoo
+        run: "echo 'find elephant in the zoo'"
+      - name: get ele
+        run: "echo 'elephant is ready'"
