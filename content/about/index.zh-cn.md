@@ -47,7 +47,7 @@ draft: false
 
 <img align="right" src="https://skillicons.dev/icons?i=go,python,c,cpp,cs,rust,webassembly,nodejs,javascript,typescript,bash,markdown,fastapi,flask,django,postgres,mysql,mongo,redis,react,vue,bootstrap,jquery,git,kubernetes,docker,vim,vscode&perline=4&theme=light" />
 
-#### Languages  
+#### 编程语言  
 [![Go](https://img.shields.io/badge/-Go-5f5f5f?style=flat&logo=go&logoColor=85d2e3&labelColor=ffffff)](https://go.dev/)
 [![Python](https://img.shields.io/badge/-Python-5f5f5f?style=flat&logo=python&labelColor=ffffff)](https://www.python.org/)
 [![C](https://img.shields.io/badge/-C-5f5f5f?style=flat&logo=c&logoColor=4a79a5&labelColor=ffffff)](https://en.cppreference.com/w/c)
@@ -63,7 +63,7 @@ draft: false
 [![Shell](https://img.shields.io/badge/-Shell-5f5f5f?style=flat&logo=gnubash&logoColor=4a79a5&labelColor=ffffff)](https://linuxcommand.org/index.php)
 [![Markdown](https://img.shields.io/badge/-Markdown-5f5f5f?style=flat&logo=markdown&logoColor=4a79a5&labelColor=ffffff)](https://www.markdownguide.org/)
 
-#### Frameworks  
+#### 开发框架  
 [![Fastapi](https://img.shields.io/badge/-Fastapi-5f5f5f?style=flat&logo=fastapi&logoColor=ffffff&labelColor=44968a)](https://fastapi.tiangolo.com/)
 [![Flask](https://img.shields.io/badge/-Flask-5f5f5f?style=flat&logo=flask&logoColor=000000&labelColor=ffffff)](https://flask.palletsprojects.com/)
 [![Django](https://img.shields.io/badge/-Django-5f5f5f?style=flat&logo=django&logoColor=000000&labelColor=ffffff)](https://www.djangoproject.com/)
@@ -72,7 +72,7 @@ draft: false
 [![Vue](https://img.shields.io/badge/-Vue-5f5f5f?style=flat&logo=vue.js&labelColor=ffffff)](https://vuejs.org/)
 [![Bootstrap](https://img.shields.io/badge/-Bootstrap-5f5f5f?style=flat&logo=bootstrap&logoColor=ffffff&labelColor=563D7C)](https://getbootstrap.com/)
 [![jQuery](https://img.shields.io/badge/-jQuery-5f5f5f?style=flat&logo=jQuery&logoColor=0769AD&labelColor=ffffff)](https://jquery.com/)
-#### Databases&Components  
+#### 数据库&组件  
 ![PostgreSQL](https://img.shields.io/badge/-PostgreSQL-5f5f5f?style=flat&logo=postgresql&logoColor=ffffff&labelColor=336791)
 ![MySQL](https://img.shields.io/badge/-MySQL-5f5f5f?style=flat&logo=mysql&labelColor=ffffff)
 ![MongoDB](https://img.shields.io/badge/-MongoDB-5f5f5f?style=flat&logo=mongodb&labelColor=ffffff)
@@ -81,7 +81,7 @@ draft: false
 ![Hadoop](https://img.shields.io/badge/-Hadoop-5f5f5f?style=flat&logo=apachehadoop&logoColor=000000&labelColor=f7e56e)
 ![Flink](https://img.shields.io/badge/-Flink-5f5f5f?style=flat&logo=apacheflink&logoColor=d55c72&labelColor=ffffff)
 
-#### Tools  
+#### 常用工具  
 [![Git](https://img.shields.io/badge/-Git-5f5f5f?style=flat&logo=git&logoColor=F05032&labelColor=ffffff)](https://git-scm.com/)
 [![GitHub](https://img.shields.io/badge/-GitHub-5f5f5f?style=flat&logo=github&logoColor=000000&labelColor=ffffff)](https://github.com/)
 [![Visual Studio Code](https://img.shields.io/badge/-VSCode-5f5f5f?style=flat&logo=visual-studio-code&labelColor=007ACC)](https://code.visualstudio.com/)
@@ -101,14 +101,14 @@ draft: false
 ![Slack](https://img.shields.io/badge/-Slack-5f5f5f?style=flat&logo=slack&logoColor=ffffff&labelColor=0078D6)
 ![Sentry](https://img.shields.io/badge/-Sentry-5f5f5f?style=flat&logo=sentry&logoColor=351c3d&labelColor=ffffff)
 
-#### Hobby platform  
+#### 休闲平台  
 ![Steam](https://img.shields.io/badge/-Steam-5f5f5f?style=flat&logo=steam&labelColor=213a61)
 ![Switch](https://img.shields.io/badge/-Switch-5f5f5f?style=flat&logo=nintendo-switch&labelColor=d42426)
 ![PS](https://img.shields.io/badge/-PS-5f5f5f?style=flat&logo=playstation&labelColor=2b71ca)
 [![Bilibili](https://img.shields.io/badge/-Bilibili-5f5f5f?style=flat&logo=bilibili&logoColor=ffffff&labelColor=45a0d1)](bilibili.com)
 [![QQ Music](https://img.shields.io/badge/-QQMusic-5f5f5f?style=flat&logo=applemusic&logoColor=fadb4a&labelColor=5ba3aa)](https://y.qq.com/n/ryqq/playlist/1333418725)
 
-#### Operating systems  
+#### 操作系统  
 ![MacOS](https://img.shields.io/badge/-MacOS-5f5f5f?style=flat&logo=apple&logoColor=000000&labelColor=ffffff)
 ![Windows](https://img.shields.io/badge/-Windows-5f5f5f?style=flat&logo=windows&logoColor=ffffff&labelColor=0078D6)
 ![Linux](https://img.shields.io/badge/-Linux-5f5f5f?style=flat&logo=linux&logoColor=000000&labelColor=aaaa22)
@@ -122,7 +122,7 @@ draft: false
 
 <img align="right" src="https://github-readme-stats.vercel.app/api?username=whitefirer&show_icons=true&theme=vue" alt="whitefirer's github stats" />
 
-### WeChat 
+### 微信扫码  
 <img src="wechat.jpg" alt="wechat" height="160" align="center" />
 
 <img src="https://github-profile-trophy.vercel.app/?username=whitefirer&theme=vue&column=7&margin-w=10" alt="logo" height="160" align="center" />
