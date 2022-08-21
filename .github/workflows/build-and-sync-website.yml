@@ -25,7 +25,7 @@ jobs: # 工作流
         - name: Build Web
           run: hugo
 
-        - name: Deploy Web
+        - name: Deploy Web to Github Pages
           uses: peaceiris/actions-gh-pages@v3
           with:
               PERSONAL_TOKEN: ${{ secrets.BLOG_TOKEN }}
@@ -33,3 +33,13 @@ jobs: # 工作流
               PUBLISH_BRANCH: main
               PUBLISH_DIR: ./public
               commit_message: ${{ github.event.head_commit.message }}
+
+        - uses: manyuanrong/setup-ossutil@v1.0
+          with:
+            # endpoint 可以去oss控制台上查看
+            endpoint: "oss-cn-hongkong.aliyuncs.com"
+            # 使用我们之前配置在secrets里面的accesskeys来配置ossutil
+            access-key-id: ${{ secrets.ACCESS_KEY_ID }}
+            access-key-secret: ${{ secrets.ACCESS_KEY_SECRET }}
+        - name: Deply Web To OSS
+          run: ossutil cp public oss://blog-whitefirer/ -rf
