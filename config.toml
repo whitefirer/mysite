@@ -668,11 +668,11 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       [params.page.comment.giscus]
         # You can refer to the official documentation of giscus to use the following configuration.
         # 你可以参考官方文档来使用下列配置
-        enable = false
-        repo = ""
-        repoId = ""
-        category = "Announcements"
-        categoryId = ""
+        enable = true
+        repo = "whitefirer/whitefirer.github.io"
+        repoId = "R_kgDOH2gmzQ"
+        category = "Comments"
+        categoryId = "DIC_kwDOH2gmzc4CQ_fM"
         # automatically adapt the current theme i18n configuration when empty
         # 为空时自动适配当前主题 i18n 配置
         lang = ""
@@ -680,7 +680,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         reactionsEnabled = "1"
         emitMetadata = "0"
         inputPosition = "bottom"
-        lazyLoading = false
+        lazyLoading = true
         lightTheme = "light"
         darkTheme = "dark"
     # Third-party library config
