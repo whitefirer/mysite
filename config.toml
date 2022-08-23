@@ -113,6 +113,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         name = ""
         url = "https://github.com/whitefirer"
         title = "GitHub"
+    [[languages.zh-cn.menu.main]]
+        weight = 6
+        identifier = "rss"
+        pre = "<i class='fa fa-rss fa-fw' aria-hidden='true'></i>"
+        post = ""
+        name = ""
+        url = "index.xml"
+        title = "Rss"
   [languages.en]
     weight = 2
     title = "whitefirer's blog"
@@ -158,6 +166,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         name = ""
         url = "https://github.com/whitefirer"
         title = "GitHub"
+    [[languages.en.menu.main]]
+        weight = 6
+        identifier = "rss"
+        pre = "<i class='fa fa-rss fa-fw' aria-hidden='true'></i>"
+        post = ""
+        name = ""
+        url = "index.xml"
+        title = "Rss"
 
 
 [module]
@@ -171,7 +187,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
   # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
-  gitRepo = "https://github.com/whitefirer"
+  gitRepo = "https://github.com/whitefirer/mysite"
   # which hash function used for SRI, when empty, no SRI is used
   # ["sha256", "sha384", "sha512", "md5"]
   # 哪种哈希函数用来 SRI, 为空时表示不使用 SRI
@@ -337,7 +353,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       gravatarEmail = ""
       # URL of avatar shown in home page
       # 主页显示头像的 URL
-      avatarURL = "avatar.png"
+      avatarURL = "https://whitefirer.org/avatar.png"
       # title shown in home page (HTML format is supported)
       # 主页显示的网站标题 (支持 HTML 格式)
       title = "whitefirer"
@@ -442,7 +458,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     RootMe= ""
     Email = "whitefirer@gmail.com"
     Phone = ""
-    RSS = ""
+    RSS = "index.xml"
 
   # Page global config
   # 文章页面全局配置
@@ -567,14 +583,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     # Comment config
     # 评论系统设置
     [params.page.comment]
-      enable = false
+      enable = true
       # Disqus comment config (https://disqus.com/)
       # Disqus 评论系统设置 (https://disqus.com/)
       [params.page.comment.disqus]
-        enable = false
+        enable = true
         # Disqus shortname to use Disqus in posts
         # Disqus 的 shortname，用来在文章中启用 Disqus 评论系统
-        shortname = ""
+        shortname = "whitefirer-org"
       # Gitalk comment config (https://github.com/gitalk/gitalk)
       # Gitalk 评论系统设置 (https://github.com/gitalk/gitalk)
       [params.page.comment.gitalk]
