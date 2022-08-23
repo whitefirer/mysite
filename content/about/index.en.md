@@ -34,7 +34,7 @@ draft: false
 
 - OpenTalk：[Evolution and practice of tenclass.com(lizhiweike.com)'s' Infrastructure](https://mp.weixin.qq.com/s/doQAo5hohE35raLQmTe7vQ)
 - Tencent Cloud Native Conference：[Distributed pressure measurement system based on kubernetes of tenclass.com(lizhiweike.com)](https://mp.weixin.qq.com/s/Se0b_Y39XE-RvNUrdZoSXQ)
-- IstioCon 2022 Talk: [Tencent Music’s service mesh practice with Istio and Aeraki](https://www.aeraki.net/zh/blog/2022/istiocon-tencent-music/)
+- IstioCon 2022 Talk: [Tencent Music’s service mesh practice with Istio and Aeraki](https://www.aeraki.net/blog/2022/istiocon-tencent-music/)
 
 ### Achievements
 
