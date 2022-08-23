@@ -1,4 +1,4 @@
-name: build&sync website 
+name: build
 
 on:  # 触发时机
   workflow_dispatch: # 手动触发
