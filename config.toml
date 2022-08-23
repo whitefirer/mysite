@@ -658,7 +658,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       [params.page.comment.utterances]
         enable = false
         # owner/repo
-        repo = ""
+        repo = "whitefirer/whitefirer.github.io"
         issueTerm = "pathname"
         label = ""
         lightTheme = "github-light"
