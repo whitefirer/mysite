@@ -43,6 +43,9 @@ enableEmoji = true
 # 忽略一些构建错误
 ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
+[permalinks]
+  posts = "/:section/:year/:month/:day/:slug/"
+
 [markup]
   defaultMarkdownHandler = "goldmark"
   [markup.goldmark]
@@ -54,7 +57,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 [author]
   name = "whitefirer"
   email = "whitefirer@gmail.com"
-  link = "https://github.com/whitefirer"
+  link = "https://whitefirer.org"
 
 # Menu config
 # 菜单配置
@@ -99,6 +102,14 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       title = ""
     [[languages.zh-cn.menu.main]]
       weight = 4
+      identifier = "archives"
+      pre = ""
+      post = ""
+      name = "归档"
+      url = "/archives/"
+      title = ""
+    [[languages.zh-cn.menu.main]]
+      weight = 5
       identifier = "about"
       pre = ""
       post = ""
@@ -114,7 +125,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         url = "https://github.com/whitefirer"
         title = "GitHub"
     [[languages.zh-cn.menu.main]]
-        weight = 6
+        weight = 7
         identifier = "rss"
         pre = "<i class='fa fa-rss fa-fw' aria-hidden='true'></i>"
         post = ""
@@ -150,8 +161,16 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       name = "Categories"
       url = "/categories/"
       title = ""
-    [[languages.en.menu.main]]
+     [[languages.zh-cn.menu.main]]
       weight = 4
+      identifier = "archives"
+      pre = ""
+      post = ""
+      name = "Archives"
+      url = "/archives/"
+      title = ""
+    [[languages.en.menu.main]]
+      weight = 5
       identifier = "about"
       pre = ""
       post = ""
@@ -167,7 +186,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         url = "https://github.com/whitefirer"
         title = "GitHub"
     [[languages.en.menu.main]]
-        weight = 6
+        weight = 7
         identifier = "rss"
         pre = "<i class='fa fa-rss fa-fw' aria-hidden='true'></i>"
         post = ""
@@ -291,7 +310,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
     # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
-    title = "whitefirer's Blog"
+    title = "whitefirer's blog"
     # whether to omit favicon resource links
     # 是否隐藏网站图标资源链接
     noFavicon = false
