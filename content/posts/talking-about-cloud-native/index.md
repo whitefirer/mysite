@@ -1,9 +1,8 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Talking About Cloud Native"
 description: ""
-date: {{ .Date }}
-lastmod: {{ .Date }}
-slug: "{{ replace .Name " " "-" | lower }}"
+date: 2022-08-27T17:21:21+08:00
+slug: "talking-about-cloud-native"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: true
