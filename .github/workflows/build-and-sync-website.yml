@@ -20,7 +20,7 @@ jobs: # 工作流
         - name: Setup Hugo
           uses: peaceiris/actions-hugo@v2
           with:
-              hugo-version: "latest"
+              hugo-version: "v0.101.0+extended"
 
         - name: Build Web
           run: hugo -v --gc
