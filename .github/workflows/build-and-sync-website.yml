@@ -23,7 +23,7 @@ jobs: # 工作流
               hugo-version: "latest"
 
         - name: Build Web
-          run: hugo
+          run: hugo -v --gc
 
         - name: Deploy Web to Github Pages
           uses: peaceiris/actions-gh-pages@v3
