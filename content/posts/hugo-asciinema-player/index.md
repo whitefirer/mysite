@@ -8,7 +8,6 @@ author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: false
 hiddenFromHomePage: false
-asciinema: true
 
 tags: ["hugo", "tech", "asciinema"]
 categories: ["hugo"]
