@@ -6,7 +6,7 @@ lastmod: 2022-08-29T15:41:16+08:00
 slug: "efficient-command-line-tools"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "command-line-tools"]
