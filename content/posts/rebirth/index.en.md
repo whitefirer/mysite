@@ -11,7 +11,7 @@ resources:
   src: "img/wallhaven.jpeg"
 
 tags: ["story", "life"]
-categories: ["story"]
+categories: ["Story"]
 
 # lightgallery: true
 ---
