@@ -1,5 +1,5 @@
 ---
-title: "如何在Hugo中使用终端播放器Asciinema-Player"
+title: "如何在Hugo博客中使用终端播放器Asciinema-Player"
 description: ""
 date: 2022-08-28T04:48:27+08:00
 lastmod: 2022-08-28T04:48:27+08:00
@@ -10,7 +10,7 @@ draft: false
 hiddenFromHomePage: false
 
 tags: ["hugo", "tech", "asciinema"]
-categories: ["hugo"]
+categories: ["Hugo"]
 toc:
     auto: false
 ---
@@ -29,8 +29,8 @@ toc:
 
 方式 | 优点 | 缺点
 ---------|----------|---------
- 视频 | 能配音配特效 | 网站流量消耗大，不能复制|
- 动图 | 文件相对小些 | 不能控制进度，不能复制 | 
+ 视频 | 能配音配特效 | 网站流量消耗大，不能复制文本 |
+ 动图 | 文件相对小些 | 不能控制进度，不能复制文本 | 
  代码 | 占用流量小，能复制 | 不能控制进度，也不太好展示效果 |
 
 而终端录制播放器Asciinema-Player则兼容体积小、能控制、能复制于一体并能完美复现终端操作场景，非常适合用于在博客中进行一些终端操作演示。
@@ -194,7 +194,7 @@ tags:
 
 ### 4.使用方法
 #### asciinema-player
-只需简单在文章中加入以下代码即可：
+asciinema-player即播放器，在博客中使用只需简单在文章中加入以下代码：
 ```python
 {{< asciinema src="https://helix-editor.com/430253.cast" cols="115" rows="35" preload="1" poster="npt:55">}}
 ```
