@@ -1,5 +1,5 @@
 baseURL = "https://whitefirer.org/"
-title = "whitefirer's blog"
+title = "whitefirer[PG]"
 
 theme = "iLoveIt"
 
@@ -28,7 +28,7 @@ paginate = 12
 googleAnalytics = "UA-28167869-1"
 # copyright description used only for seo schema
 # 版权描述，仅仅用于 SEO
-copyright = "123"
+copyright = "2022©️whitefirer"
 
 # whether to use robots.txt
 # 是否使用 robots.txt
@@ -59,7 +59,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 [languages]
   [languages.zh-cn]
     weight = 1
-    title = "whitefirer's blog"
+    title = "whitefirer[PG]"
     languageCode = "zh-CN"
     languageName = "简体中文"
     hasCJKLanguage = true
@@ -122,7 +122,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         title = "Rss"
   [languages.en]
     weight = 2
-    title = "whitefirer's blog"
+    title = "whitefirer[PG]"
     languageCode = "en"
     languageName = "English"
     [[languages.en.menu.main]]
@@ -206,7 +206,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   dateFormat = "2006-01-02"
   # website title for Open Graph and Twitter Cards
   # 网站标题, 用于 Open Graph 和 Twitter Cards
-  title = "whitefirer's blog"
+  title = "whitefirer[PG]"
   # website description for RSS, SEO, Open Graph and Twitter Cards
   # 网站描述, 用于 RSS, SEO, Open Graph 和 Twitter Cards
   description = "Welcome to the blog of whitefirer."
@@ -231,7 +231,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       logo = ""
       # title name
       # 标题名称
-      name = "whitefirer's blog"
+      name = "whitefirer[PG]"
       # you can add extra information before the name (HTML format is supported), such as icons
       # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
       pre = ""
@@ -299,7 +299,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
     # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
-    title = "whitefirer's blog"
+    title = "whitefirer[PG]"
     # whether to omit favicon resource links
     # 是否隐藏网站图标资源链接
     noFavicon = false
