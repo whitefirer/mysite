@@ -1,10 +1,10 @@
 ---
-title: "{{ replace .Name "-" " " | title }}"
+title: "Extension and Expansion of Service Mesh 2"
 subtitle: ""
 description: ""
-date: {{ .Date }}
-lastmod: {{ .Date }}
-slug: "{{ replace .Name " " "-" | lower }}"
+date: 2022-09-05T14:49:22+08:00
+lastmod: 2022-09-05T14:49:22+08:00
+slug: "extension-and-expansion-of-service-mesh-2"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: true
@@ -19,7 +19,7 @@ toc:
 ### 背景
 ### 方案
 
-#### xxx
+#### polaris2istio
 
 ### 总结
 
