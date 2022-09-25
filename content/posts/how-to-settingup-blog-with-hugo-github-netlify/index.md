@@ -22,13 +22,17 @@ toc:
 flowchart LR
 Write[New Post] -->|Git Push| GitHub(Github Action)
 GitHub -->|Build| Files[Static Files]
-Files -->|Deploy| Pages[Github Pages]
-Netlify -->|Watch| Pages
-Netlify -->|Update| Public
+Files -->|Update| Pages[Github Pages]
+Netlify <-->|Watch| Pages
+Netlify -->|Deploy| Public
 {{< /mermaid >}}
 
+通过配置Github Action来编译构建我们的网站文件并发布到Github Pages，与此同时，通过Netlify监听Github仓库的变化，同步更新部署到Netlify App网站。
+
 #### 构建流水线（Github Action）
+Github Action的workflows配置文件如下：
 ```yaml
+# mysite/.github/workflows/build-and-sync-website.yml
 name: build
 
 on:  # 触发时机
@@ -77,5 +81,7 @@ jobs: # 工作流
         #   run: ossutil cp public oss://blog-whitefirer/ -rf
 ```
 
-### 总结
+#### HTTPS域名证书（Let's Encrypt CA）
 
+### 总结
+整个方案较简单，维护起来也容易，每次变更通过Git提交即可自动触发构建部署。
