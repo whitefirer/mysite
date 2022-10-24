@@ -7,11 +7,11 @@ lastmod: 2022-09-05T14:51:05+08:00
 slug: "how-to-settingup-blog-with-hugo-github-netlify"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
-tags: ["tech", "cloud native"]
-categories: ["Tech"]
+tags: ["tech", "hugo", "github", "netlify"]
+categories: ["Tech", "Hugo"]
 toc:
     auto: false
 ---
@@ -27,10 +27,12 @@ Netlify <-->|Watch| Pages
 Netlify -->|Deploy| Public
 {{< /mermaid >}}
 
-通过配置Github Action来编译构建我们的网站文件并发布到Github Pages，与此同时，通过Netlify监听Github仓库的变化，同步更新部署到Netlify App网站。
+通过配置 Github Action 来编译构建我们的网站文件并发布到 Github Pages 。  
+与此同时，通过 Netlify 监听 Github 仓库的变化，同步更新部署到 Netlify App 网站。  
+当然其中每个步骤都可以替换或同时有其它方式，如流水线也可以用circleci之类的，网站托管也可以用nginx服务器、SCF云函数、OSS对象存储等方式。
 
 #### 构建流水线（Github Action）
-Github Action的workflows配置文件如下：
+Github Action 的 [workflows](https://github.com/whitefirer/mysite/blob/main/.github/workflows/build-and-sync-website.yml) 配置文件如下：
 ```yaml
 # mysite/.github/workflows/build-and-sync-website.yml
 name: build
@@ -81,7 +83,20 @@ jobs: # 工作流
         #   run: ossutil cp public oss://blog-whitefirer/ -rf
 ```
 
+#### 徽章（Badge）
+```markdown
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8aeed089-7b2c-4ebe-84e9-8df704f39948/deploy-status)](https://app.netlify.com/sites/whitefirer/deploys)
+[![GitHub](https://github.com/whitefirer/mysite/actions/workflows/build-and-sync-website.yml/badge.svg)](https://github.com/whitefirer/mysite/actions/workflows/build-and-sync-website.yml)
+```
+效果如下：  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8aeed089-7b2c-4ebe-84e9-8df704f39948/deploy-status)](https://app.netlify.com/sites/whitefirer/deploys)
+[![GitHub](https://github.com/whitefirer/mysite/actions/workflows/build-and-sync-website.yml/badge.svg)](https://github.com/whitefirer/mysite/actions/workflows/build-and-sync-website.yml)
+
+可以通过观测显示的样式来确认网站更新状态，也可以点击徽章后查看构建和发布的日志详情。
+
 #### HTTPS域名证书（Let's Encrypt CA）
+域名证书这里用的免费证书，当然也可以购买证书。
 
 ### 总结
-整个方案较简单，维护起来也容易，每次变更通过Git提交即可自动触发构建部署。
+整个方案较简单，维护起来也容易，每次变更通过Git提交即可自动触发构建部署。  
+后面有时间了我再分享下网站功能和主题的开发扩展。
