@@ -7,7 +7,7 @@ lastmod: 2023-04-07T11:04:59+08:00
 slug: "how-to-run-python-in-the-web-terminal"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "xterm.js", "python", "pyodide", "wasm"]
