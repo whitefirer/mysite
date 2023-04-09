@@ -98,6 +98,8 @@ toc:
         var term = new Terminal();
         term.open(document.getElementById('terminal'));
         var pyodide = null;
+        cmdX = 0;
+        cmdY = 0;
 
         var stdout_codes = [];
         function rawstdout(code) {
@@ -107,6 +109,7 @@ toc:
         async function startPyodide() {
             term.write('Starting Python...');
             pyodide = await loadPyodide();
+            await pyodide.loadPackage("pygments")
 
             pyodide.runPythonAsync(`
                     import sys
@@ -123,13 +126,38 @@ toc:
             term.write('\r\x1b[01;32m>>> ');
         };
         var cmd = '';
+        var blockFlag = "";
+        var blockMap = {
+            ":": "\r",
+            "{": "}",
+            "[": "]",
+            "(": ")",
+        }
 
         term.onData(e => {
             const printable = !e.altKey && !e.ctrlKey && !e.metaKey;
             switch (e) {
                 case ENTER:
-                    term.writeln('\x1b[0m');
                     if (cmd.length > 0) {
+                        if (((cmd[cmd.length - 1] in blockMap)) && (blockFlag == "")) {
+                            blockFlag = cmd[cmd.length - 1];
+                            cmd += e;
+                            term.writeln("\r");
+                            term.write('... ');
+                            break;
+                        }
+                        if (blockFlag != "") {
+                            if (cmd[cmd.length - 1] == blockMap[blockFlag]) {
+                                blockFlag = false;
+                            } else {
+                                cmd += e;
+                                term.writeln("\r");
+                                term.write('... ');
+                                break;
+                            }
+                        }
+                        term.writeln('\x1b[0m');
+
                         stdout_codes = []
                         pyodide.runPythonAsync(cmd).then(output => {
                             let result = new TextDecoder().decode(new Uint8Array(stdout_codes));
@@ -145,6 +173,7 @@ toc:
                         });
 
                     } else {
+                        term.writeln('\x1b[0m');
                         term.prompt();
                     }
                     cmd = '';
@@ -160,8 +189,27 @@ toc:
                 default:
                     if (printable) {
                         if (e >= String.fromCharCode(0x20) && e <= String.fromCharCode(0x7E) || e >= '\u00a0') {
+                            if (cmd.length == 0) {
+                                cmdX = term.buffer._normal.cursorX + 1;
+                                cmdY = term.buffer._normal.cursorY + term.buffer._normal.baseY + 1;
+                            }
                             cmd += e;
-                            term.write(e);
+                            // term.write(e);
+                            term.write(`\x1b[?25l\x1b[${cmdY - term.buffer._normal.baseY};${cmdX}f`)
+                            pyodide.runPythonAsync(`
+                                import sys
+                                from pygments import highlight
+                                from pygments.lexers import PythonLexer
+                                from pygments.formatters import TerminalFormatter
+                                code = """
+                                ${cmd}
+                                """
+                                highlighted_code = highlight(code, PythonLexer(), TerminalFormatter());
+                                highlighted_code[:-1]
+                            `).then(output => {
+                                term.write(output.replaceAll('\n', '\r\n... '))
+                            })
+                            term.write('\x1b[?25h'); // Show cursor
                         }
                     }
             }
@@ -175,6 +223,24 @@ toc:
 ```
 
 获取标准输出的这一段官方文档是没有例子的，我是在他们的[测试用例](https://github.com/pyodide/pyodide/blob/a038ac17d53458097386fd9393ee5202ac4ce193/src/tests/test_pyodide.py#L1281)里找到的如何设置和处理`setStdOut`的。
+
+另外相比官方的Python终端，我还借助`pygments`库给代码们加上了着色，代码如下：
+```javascript
+pyodide.runPythonAsync(`
+    import sys
+    from pygments import highlight
+    from pygments.lexers import PythonLexer
+    from pygments.formatters import TerminalFormatter
+    code = """
+    ${cmd}
+    """
+    highlighted_code = highlight(code, PythonLexer(), TerminalFormatter());
+    highlighted_code[:-1]
+`).then(output => {
+    term.write(output.replaceAll('\n', '\r\n... '))
+})
+```
+
 
 ### 效果
 效果如下，试试在里面敲你熟悉的python代码吧~：
