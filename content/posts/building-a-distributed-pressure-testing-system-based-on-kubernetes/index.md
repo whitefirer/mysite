@@ -7,7 +7,7 @@ lastmod: 2021-04-13T20:01:00+08:00
 slug: "building-a-distributed-pressure-testing-system-based-on-kubernetes"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "cloud native"]

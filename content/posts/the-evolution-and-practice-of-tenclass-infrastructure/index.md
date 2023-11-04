@@ -7,7 +7,7 @@ lastmod: 2020-09-11T18:30:00+08:00
 slug: "the-evolution-and-practice-of-tenclass-infrastructure"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "cloud native"]
