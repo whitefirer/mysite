@@ -7,7 +7,7 @@ lastmod: 2023-11-05T16:34:33+08:00
 slug: "life-and-world"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["title-tattle"]
