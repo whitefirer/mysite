@@ -3,3 +3,4 @@ public
 resources
 config.debug.toml
 .hugo_build.lock
+.vscode
