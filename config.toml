@@ -25,7 +25,7 @@ hasCJKLanguage = true
 paginate = 12
 # google analytics code [UA-XXXXXXXX-X]
 # 谷歌分析代号 [UA-XXXXXXXX-X]
-googleAnalytics = "UA-28167869-1"
+googleAnalytics = "G-70Q8REKE17"
 # copyright description used only for seo schema
 # 版权描述，仅仅用于 SEO
 copyright = "2022©️whitefirer"
@@ -47,13 +47,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 [permalinks]
   posts = "/:section/:year/:month/:day/:slug/"
 
-# Author config
-# 作者配置
-[author]
-  name = "whitefirer"
-  email = "whitefirer@gmail.com"
-  link = "https://whitefirer.org"
-
 # Menu config
 # 菜单配置
 [languages]
@@ -63,6 +56,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     languageCode = "zh-CN"
     languageName = "简体中文"
     hasCJKLanguage = true
+    [languages.zh-cn.params]
     subtitle = ""
     [[languages.zh-cn.menu.main]]
       weight = 1
@@ -189,6 +183,12 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     min = "0.62.0"
 
 [params]
+  # Author config
+  # 作者配置
+  [params.author]
+    name = "whitefirer"
+    email = "whitefirer@gmail.com"
+    link = "https://whitefirer.org"
   # site default theme ["auto", "light", "dark"]
   # 网站默认主题 ["auto", "light", "dark"]
   defaultTheme = "auto"
@@ -757,7 +757,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
     enable = true
     # Google Analytics
     [params.analytics.google]
-      id = "UA-28167869-1"
+      id = "G-70Q8REKE17"
       # whether to anonymize IP
       # 是否匿名化用户 IP
       anonymizeIP = true
@@ -883,4 +883,3 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   page = ["HTML", "MarkDown"]
   section = ["HTML", "RSS"]
   taxonomy = ["HTML", "RSS"]
-  taxonomyTerm = ["HTML"]
