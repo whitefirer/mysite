@@ -24,7 +24,7 @@ jobs: # 工作流
               extended: true
 
         - name: Build Web
-          run: hugo -v --gc
+          run: hugo --logLevel info --gc
 
         - name: Deploy Web to Github Pages
           uses: peaceiris/actions-gh-pages@v3
