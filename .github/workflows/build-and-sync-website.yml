@@ -12,13 +12,13 @@ jobs: # 工作流
     runs-on: ubuntu-latest
     steps:
         - name: Checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
           with:
               submodules: true
               fetch-depth: 0
 
         - name: Setup Hugo
-          uses: peaceiris/actions-hugo@v2
+          uses: peaceiris/actions-hugo@v3
           with:
               hugo-version: "0.131.0"
               extended: true
@@ -27,7 +27,7 @@ jobs: # 工作流
           run: hugo --logLevel info --gc
 
         - name: Deploy Web to Github Pages
-          uses: peaceiris/actions-gh-pages@v3
+          uses: peaceiris/actions-gh-pages@v4
           with:
               PERSONAL_TOKEN: ${{ secrets.BLOG_TOKEN }}
               EXTERNAL_REPOSITORY: whitefirer/whitefirer.github.io
