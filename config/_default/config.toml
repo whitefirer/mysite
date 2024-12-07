@@ -1,0 +1,35 @@
+baseURL = "https://whitefirer.org/"
+title = "whitefirer[PG]"
+
+theme = "iLoveIt"
+
+# Language settings
+defaultContentLanguage = "zh-cn"
+defaultContentLanguageInSubdir = false
+hasCJKLanguage = true
+
+# default amount of posts in each pages
+paginate = 12
+# google analytics code
+googleAnalytics = "G-70Q8REKE17"
+# copyright description used only for seo schema
+copyright = "2022©️whitefirer"
+
+# whether to use robots.txt
+enableRobotsTXT = true
+# whether to use git commit log
+enableGitInfo = true
+# whether to use emoji code
+enableEmoji = true
+
+# ignore some build errors
+ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
+
+[permalinks]
+  posts = "/:section/:year/:month/:day/:slug/"
+
+# Options to make output .md files
+[outputFormats.MarkDown]
+  mediaType = "text/plain"
+  isPlainText = true
+  isHTML = false

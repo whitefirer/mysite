@@ -1,0 +1,368 @@
+# Author config
+[author]
+  name = "whitefirer"
+  email = "whitefirer@gmail.com"
+  link = "https://whitefirer.org"
+# site default theme ["auto", "light", "dark"]
+defaultTheme = "auto"
+favicon = "avatar.png"
+# public git repo url only then enableGitInfo is true
+gitRepo = "https://github.com/whitefirer/mysite"
+# which hash function used for SRI, when empty, no SRI is used
+fingerprint = ""
+# date format
+dateFormat = "2006-01-02"
+# website title for Open Graph and Twitter Cards
+title = "whitefirer[PG]"
+# website description for RSS, SEO, Open Graph and Twitter Cards
+description = "Welcome to the blog of whitefirer."
+# website images for Open Graph and Twitter Cards
+images = []
+
+# Header config
+[header]
+  # desktop header mode ["fixed", "normal", "auto"]
+  desktopMode = "fixed"
+  # mobile header mode ["fixed", "normal", "auto"]
+  mobileMode = "auto"
+  [header.title]
+    logo = ""
+    name = "whitefirer[PG]"
+    pre = ""
+    post = ""
+    typeit = false
+
+# Footer config
+[footer]
+  enable = true
+  custom = ""
+  hugo = true
+  copyright = true
+  author = true
+  since = 2022
+  icp = ""
+  license= ""
+
+# Section (all posts) page config
+[section]
+  paginate = 20
+  dateFormat = "01-02"
+  rss = 10
+
+# List (category or tag) page config
+[list]
+  paginate = 20
+  dateFormat = "01-02"
+  rss = 10
+
+# App icon config
+[app]
+  title = "whitefirer[PG]"
+  noFavicon = false
+  svgFavicon = ""
+  themeColor = "#ffffff"
+  iconColor = "#5bbad5"
+  tileColor = "#da532c"
+
+# Search config
+[search]
+  enable = true
+  type = "lunr"
+  contentLength = 4000
+  placeholder = ""
+  maxResultLength = 10
+  snippetLength = 30
+  highlightTag = "em"
+  absoluteURL = false
+  [search.algolia]
+    index = ""
+    appID = ""
+    searchKey = ""
+
+# Home page config
+[home]
+  rss = 10
+  [home.profile]
+    enable = true
+    gravatarEmail = ""
+    avatarURL = "/avatar.png"
+    title = "whitefirer"
+    subtitle = [
+      "Go big or go home",
+      "Cloud Native and Architecture Design",
+      "人生苦短，何不用python. 星汉灿烂，道阻且长go.",
+      "难度即价值所在",
+    ]
+    typeit = true
+    social = true
+    disclaimer = ""
+  [home.posts]
+    enable = true
+    paginate = 6
+
+# Social config in home page
+[social]
+  GitHub = "whitefirer"
+  Linkedin = ""
+  Twitter = ""
+  Instagram = ""
+  Facebook = ""
+  Telegram = ""
+  Medium = "@whitefirer"
+  Gitlab = ""
+  Youtubelegacy = ""
+  Youtubecustom = ""
+  Youtubechannel = ""
+  Tumblr = ""
+  Quora = ""
+  Keybase = ""
+  Pinterest = ""
+  Reddit = ""
+  Codepen = ""
+  FreeCodeCamp = ""
+  Bitbucket = ""
+  Stackoverflow = ""
+  Weibo = ""
+  Odnoklassniki = ""
+  VK = ""
+  Flickr = ""
+  Xing = ""
+  Snapchat = ""
+  Soundcloud = ""
+  Spotify = ""
+  Bandcamp = ""
+  Paypal = ""
+  Fivehundredpx = ""
+  Mix = ""
+  Goodreads = ""
+  Lastfm = ""
+  Foursquare = ""
+  Hackernews = ""
+  Kickstarter = ""
+  Patreon = ""
+  Steam = ""
+  Twitch = ""
+  Strava = ""
+  Skype = ""
+  Whatsapp = ""
+  Zhihu = "whitefirer"
+  Douban = ""
+  Angellist = ""
+  Slidershare = ""
+  Jsfiddle = ""
+  Deviantart = ""
+  Behance = ""
+  Dribbble = ""
+  Wordpress = ""
+  Vine = ""
+  Googlescholar = ""
+  Researchgate = ""
+  Mastodon = ""
+  Thingiverse = ""
+  Devto = ""
+  Gitea = ""
+  XMPP = ""
+  Matrix = ""
+  Bilibili = "whitefirer"
+  Discord = ""
+  DiscordInvite = ""
+  Lichess = ""
+  ORCID = ""
+  Pleroma = ""
+  Kaggle = ""
+  MediaWiki= ""
+  Plume = ""
+  HackTheBox = ""
+  RootMe= ""
+  Email = "whitefirer@gmail.com"
+  Phone = ""
+  RSS = "index.xml"
+
+# Page global config
+[page]
+  hiddenFromHomePage = false
+  hiddenFromSearch = false
+  twemoji = false
+  lightgallery = false
+  ruby = true
+  fraction = true
+  fontawesome = true
+  linkToMarkdown = true
+  rssFullText = false
+  [page.toc]
+    enable = true
+    keepStatic = false
+    auto = true
+  [page.code]
+    copy = true
+    maxShownLines = 50
+  # KaTeX mathematical formulas config
+  [page.math]
+    enable = false
+    inlineLeftDelimiter = ""
+    inlineRightDelimiter = ""
+    blockLeftDelimiter = ""
+    blockRightDelimiter = ""
+    copyTex = true
+    mhchem = true
+  # Mapbox GL JS config
+  [page.mapbox]
+    accessToken = ""
+    lightStyle = "mapbox://styles/mapbox/light-v10?optimize=true"
+    darkStyle = "mapbox://styles/mapbox/dark-v10?optimize=true"
+    navigation = true
+    geolocate = true
+    scale = true
+    fullscreen = true
+  # Social share links in post page
+  [page.share]
+    enable = true
+    Twitter = true
+    Facebook = true
+    Linkedin = false
+    Whatsapp = false
+    Pinterest = false
+    Tumblr = false
+    HackerNews = true
+    Reddit = false
+    VK = false
+    Buffer = false
+    Xing = false
+    Line = true
+    Instapaper = false
+    Pocket = false
+    Flipboard = false
+    Weibo = true
+    Blogger = false
+    Baidu = false
+    Odnoklassniki = false
+    Evernote = false
+    Skype = false
+    Trello = false
+    Mix = false
+  # Comment config
+  [page.comment]
+    enable = true
+    [page.comment.disqus]
+      enable = false
+      shortname = "whitefirer-org"
+    [page.comment.gitalk]
+      enable = false
+      owner = ""
+      repo = ""
+      clientId = ""
+      clientSecret = ""
+    [page.comment.valine]
+      enable = true
+      appId = "n6h55x0vTgCaFtA95qPPqpN0-9Nh9j0Va"
+      appKey = "cxNbhYeWTE358UtBG90uf0Sn"
+      placeholder = ""
+      avatar = "mp"
+      meta= ""
+      pageSize = 10
+      lang = ""
+      visitor = true
+      recordIP = true
+      highlight = true
+      enableQQ = false
+      serverURLs = ""
+      emoji = ""
+    [page.comment.facebook]
+      enable = false
+      width = "100%"
+      numPosts = 10
+      appId = ""
+      languageCode = ""
+    [page.comment.telegram]
+      enable = false
+      siteID = ""
+      limit = 5
+      height = ""
+      color = ""
+      colorful = true
+      dislikes = false
+      outlined = false
+    [page.comment.commento]
+      enable = false
+    [page.comment.utterances]
+      enable = false
+      repo = "whitefirer/whitefirer.github.io"
+      issueTerm = "pathname"
+      label = ""
+      lightTheme = "github-light"
+      darkTheme = "github-dark"
+    [page.comment.giscus]
+      enable = true
+      repo = "whitefirer/whitefirer.github.io"
+      repoId = "R_kgDOH2gmzQ"
+      category = "Comments"
+      categoryId = "DIC_kwDOH2gmzc4CQ_fM"
+      lang = ""
+      mapping = "pathname"
+      reactionsEnabled = "1"
+      emitMetadata = "0"
+      inputPosition = "bottom"
+      lazyLoading = true
+      lightTheme = "light"
+      darkTheme = "dark"
+  # Third-party library config
+  [page.library]
+    [page.library.css]
+    [page.library.js]
+  # Page SEO config
+  [page.seo]
+    images = []
+    [page.seo.publisher]
+      name = ""
+      logoUrl = ""
+
+# TypeIt config
+[typeit]
+  speed = 100
+  cursorSpeed = 1000
+  cursorChar = "|"
+  duration = -1
+
+# Site verification code
+[verification]
+  google = ""
+  bing = ""
+  yandex = ""
+  pinterest = ""
+  baidu = ""
+
+# Site SEO config
+[seo]
+  image = ""
+  thumbnailUrl = ""
+
+# Analytics config
+[analytics]
+  enable = true
+  [analytics.google]
+    id = "G-70Q8REKE17"
+    anonymizeIP = true
+  [analytics.fathom]
+    id = ""
+    server = ""
+  [analytics.plausible]
+    dataDomain = ""
+  [analytics.yandexMetrica]
+    id = ""
+
+# Cookie consent config
+[cookieconsent]
+  enable = false
+  [cookieconsent.content]
+    message = ""
+    dismiss = ""
+    link = ""
+
+# CDN config for third-party library files
+[cdn]
+  data = "jsdelivr.yml"
+
+# Compatibility config
+[compatibility]
+  polyfill = false
+  objectFit = false

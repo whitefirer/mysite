@@ -1,0 +1,126 @@
+# Menu config
+[zh-cn]
+  weight = 1
+  title = "whitefirer[PG]"
+  languageCode = "zh-CN"
+  languageName = "简体中文"
+  hasCJKLanguage = true
+  [zh-cn.params]
+  subtitle = ""
+  [[zh-cn.menu.main]]
+    weight = 1
+    identifier = "posts"
+    pre = ""
+    post = ""
+    name = "文章"
+    url = "/posts/"
+    title = ""
+  [[zh-cn.menu.main]]
+    weight = 2
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "标签"
+    url = "/tags/"
+    title = ""
+  [[zh-cn.menu.main]]
+    weight = 3
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "分类"
+    url = "/categories/"
+    title = ""
+  # [[zh-cn.menu.main]]
+  #   weight = 4
+  #   identifier = "archives"
+  #   pre = ""
+  #   post = ""
+  #   name = "归档"
+  #   url = "/archives/"
+  #   title = ""
+  [[zh-cn.menu.main]]
+    weight = 5
+    identifier = "about"
+    pre = ""
+    post = ""
+    name = "关于"
+    url = "/about/"
+    title = ""
+  [[zh-cn.menu.main]]
+      weight = 6
+      identifier = "github"
+      pre = "<i class='fab fa-github fa-fw' aria-hidden='true'></i>"
+      post = ""
+      name = ""
+      url = "https://github.com/whitefirer"
+      title = "GitHub"
+  [[zh-cn.menu.main]]
+      weight = 7
+      identifier = "rss"
+      pre = "<i class='fa fa-rss fa-fw' aria-hidden='true'></i>"
+      post = ""
+      name = ""
+      url = "index.xml"
+      title = "Rss"
+[en]
+  weight = 2
+  title = "whitefirer[PG]"
+  languageCode = "en"
+  languageName = "English"
+  [[en.menu.main]]
+    weight = 1
+    identifier = "posts"
+    pre = ""
+    post = ""
+    name = "Posts"
+    url = "/posts/"
+    title = ""
+  [[en.menu.main]]
+    weight = 2
+    identifier = "tags"
+    pre = ""
+    post = ""
+    name = "Tags"
+    url = "/tags/"
+    title = ""
+  [[en.menu.main]]
+    weight = 3
+    identifier = "categories"
+    pre = ""
+    post = ""
+    name = "Categories"
+    url = "/categories/"
+    title = ""
+  #  [[en.menu.main]]
+  #   weight = 4
+  #   identifier = "archives"
+  #   pre = ""
+  #   post = ""
+  #   name = "Archives"
+  #   url = "/archives/"
+  #   title = ""
+  [[en.menu.main]]
+    weight = 5
+    identifier = "about"
+    pre = ""
+    post = ""
+    name = "About"
+    url = "/about/"
+    title = ""
+  [[en.menu.main]]
+      weight = 6
+      identifier = "github"
+      pre = "<i class='fab fa-github fa-fw' aria-hidden='true'></i>"
+      post = ""
+      name = ""
+      url = "https://github.com/whitefirer"
+      title = "GitHub"
+  [[en.menu.main]]
+      weight = 7
+      identifier = "rss"
+      pre = "<i class='fa fa-rss fa-fw' aria-hidden='true'></i>"
+      post = ""
+      name = ""
+      url = "index.xml"
+      title = "Rss"
