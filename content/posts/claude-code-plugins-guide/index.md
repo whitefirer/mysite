@@ -28,19 +28,6 @@ Claude Code 是 Anthropic 推出的终端原生 AI 编码助手。开箱即用�
 
 ---
 
-## 目录
-
-1. [caveman：输出 token 直降 75%](#1-caveman输出-token-直降-75)
-2. [superpowers：完整软件开发方法论](#2-superpowers完整软件开发方法论)
-3. [claude-mem：跨会话持久记忆](#3-claude-mem跨会话持久记忆)
-4. [frontend-design：告别 AI 通用审美](#4-frontend-design告别-ai-通用审美)
-5. [claude-context：语义代码搜索](#5-claude-context语义代码搜索)
-6. [MCP vs 插件：两种扩展机制](#6-mcp-vs-插件两种扩展机制)
-7. [插件组合：1+1+1+1+1 > 5](#7-插件组合11111--5)
-8. [安装与总结](#8-安装与总结)
-
----
-
 ## 1. caveman：输出 token 直降 75%
 
 **GitHub**: [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
