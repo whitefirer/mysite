@@ -1,0 +1,105 @@
+// ==============================
+// Custom style
+// 自定义样式
+// ==============================
+
+kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 11px ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+    line-height: 10px;
+    color: #24292f;
+    vertical-align: middle;
+    background-color: #f6f8fa;
+    border: solid 1px rgba(175,184,193,0.2);
+    border-bottom-color: rgba(175,184,193,0.2);
+    border-radius: 6px;
+    box-shadow: inset 0 -1px 0 rgba(175,184,193,0.2);
+}
+
+.mermaid svg {
+    height: auto !important;
+}
+
+.tab-nav-button {
+    border-width: 1px 1px 1px 1px !important;
+    border-color: #ccc !important;
+    border-radius: 4px 4px 0 0 !important;
+    background-color: #ddd !important;
+    float: left;
+    display: block;
+    position: relative;
+    margin-left: 4px;
+    bottom: -1px;
+}
+.tab-nav-button:first-child {
+    margin-left: 0px;
+}
+.tab-nav-button.active {
+    background-color: #fff !important;
+    border-bottom-color: #fff !important;
+}
+
+.tab-panel {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+.tab-content .tab-item{
+    display: none;
+}
+
+.tab-content .tab-item.active{
+    display: block;
+}
+
+.tab-item pre{
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.spoiler {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+  }
+
+  .spoiler::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1px;
+    color: white;
+    background: black;
+    opacity: 1;
+    transition: opacity 0.7s ease, transform 0.3s ease;
+  }
+
+  .spoiler:hover::before {
+    opacity: 0;
+    transform: translateY(-50%)rotateX(80deg);
+    transition: opacity 1.0s ease, transform 0.5s ease;
+    transition-delay: 0.3s;
+  }
+
+// Sticky post badge
+.post-sticky-badge {
+    display: inline-block;
+    font-size: 0.7em;
+    font-weight: normal;
+    color: #e74c3c;
+    background: #fdf0ef;
+    border: 1px solid #f5c6cb;
+    border-radius: 3px;
+    padding: 1px 6px;
+    margin-right: 6px;
+    vertical-align: middle;
+
+    [theme=dark] & {
+        color: #f1948a;
+        background: rgba(231, 76, 60, 0.12);
+        border-color: rgba(231, 76, 60, 0.3);
+    }
+}
