@@ -9,6 +9,7 @@ author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: false
 hiddenFromHomePage: false
+mermaid: true
 
 tags: ["tech", "hugo", "github", "netlify"]
 categories: ["Tech", "Hugo"]

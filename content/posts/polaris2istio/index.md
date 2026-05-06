@@ -8,6 +8,7 @@ author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: false
 hiddenFromHomePage: false
+mermaid: true
 
 tags: ["tech", "cloud native", "service mesh", "istio"]
 categories: ["Tech"]
