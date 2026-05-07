@@ -84,6 +84,12 @@ kbd {
     transition-delay: 0.3s;
   }
 
+// Let figure images keep their natural width instead of 100% stretch
+.single .content figure img {
+  width: auto !important;
+  max-width: 100%;
+}
+
 // Sticky post badge
 .post-sticky-badge {
     display: inline-block;
