@@ -253,20 +253,14 @@ images = []
       clientId = ""
       clientSecret = ""
     [page.comment.valine]
+      enable = false
+    [page.comment.waline]
       enable = true
-      appId = "n6h55x0vTgCaFtA95qPPqpN0-9Nh9j0Va"
-      appKey = "cxNbhYeWTE358UtBG90uf0Sn"
-      placeholder = ""
-      avatar = "mp"
-      meta= ""
+      serverURL = "https://my-site-comment-qlau9xu72-whitefirers-projects.vercel.app"
+      lang = "zh-CN"
+      darkMode = "auto"
       pageSize = 10
-      lang = ""
-      visitor = true
-      recordIP = true
-      highlight = true
-      enableQQ = false
-      serverURLs = ""
-      emoji = ""
+      requiredMeta = ["nick", "mail"]
     [page.comment.facebook]
       enable = false
       width = "100%"

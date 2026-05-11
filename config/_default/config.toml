@@ -25,6 +25,9 @@ enableEmoji = true
 # ignore some build errors
 ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
+[taxonomies]
+  series = "series"
+
 [permalinks]
   posts = "/:section/:year/:month/:day/:slug/"
 

@@ -31,7 +31,9 @@ Claude Code 是 Anthropic 推出的终端原生 AI 编码助手。开箱即用�
 ## 1. caveman：输出 token 直降 75%
 
 **GitHub**: [JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
+
 **维护者**: Julius Brussee
+
 **核心价值**: 让 AI 像穴居人一样说话——保留 100% 技术准确度，砍掉 75% 输出 token。
 
 ### 原理
@@ -99,7 +101,9 @@ caveman **只影响输出 token**，不影响思考/推理 token。模型能力�
 ## 2. superpowers：完整软件开发方法论
 
 **GitHub**: [obra/superpowers](https://github.com/obra/superpowers)
+
 **维护者**: Jesse Vincent (Prime Radiant)
+
 **核心价值**: 将松散提示词变成结构化开发流程，从需求到合并覆盖全流程。
 
 ### 核心理念
@@ -163,7 +167,10 @@ superpowers 本身不直接压缩 token，而是通过**减少返工**间接节�
 
 ## 3. claude-mem：跨会话持久记忆
 
+**GitHub**: [thedotmack/claude-mem](https://github.com/thedotmack/claude-mem)
+
 **维护者**: thedotmack
+
 **核心价值**: 让 AI 记住上次会话、上周的 bug 修复、上个月的架构决策。
 
 ### 问题
@@ -222,7 +229,10 @@ get_observations([IDs]) → 过滤后获取详情 → 仅获取需要的完整�
 
 ## 4. frontend-design：告别 AI 通用审美
 
-**维护者**: Anthropic (Prithvi Rajasekaran, Alexander Bricken)
+**GitHub**: [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official)（官方插件集）
+
+**维护者**: Anthropic
+
 **核心价值**: 自动生成有设计感的前端界面，避免 AI 默认的"灰白蓝"通用风格。
 
 ### 问题
@@ -276,7 +286,10 @@ frontend-design 指导 agent 做出大胆的美学选择。具体来说，它会
 
 ## 5. claude-context：语义代码搜索
 
+**GitHub**: [zilliztech/claude-context](https://github.com/zilliztech/claude-context)
+
 **MCP 服务**: `@zilliz/claude-context-mcp`
+
 **核心价值**: 用向量语义搜索替代盲目的 grep + read 循环，大幅减少代码探索阶段的 token 消耗。
 
 ### 问题
