@@ -26,6 +26,8 @@ enableEmoji = true
 ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
 
 [taxonomies]
+  tags = "tags"
+  categories = "categories"
   series = "series"
 
 [permalinks]
