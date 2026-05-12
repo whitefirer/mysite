@@ -256,7 +256,7 @@ images = []
       enable = false
     [page.comment.waline]
       enable = true
-      serverURL = "https://my-site-comment-qlau9xu72-whitefirers-projects.vercel.app"
+      serverURL = "https://comment.whitefirer.org"
       lang = "zh-CN"
       darkMode = "auto"
       pageSize = 10
