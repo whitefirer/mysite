@@ -20,10 +20,9 @@
 
     <article class="page single">
         {{- /* Title */ -}}
-        <h1 class="single-title animate__animated animate__flipInX">{{ .Title | emojify }}</h1>
-
-        {{- /* WeChat preview button (dev only) */ -}}
-        {{- partial "wechat-preview.html" . -}}
+        <div style="display:flex;align-items:baseline;gap:0">
+        <h1 class="single-title animate__animated animate__flipInX" style="margin-bottom:0">{{ .Title | emojify }}</h1>{{- partial "wechat-preview.html" . -}}
+        </div>
 
         {{- /* Subtitle */ -}}
         {{- with $params.subtitle -}}
