@@ -4,3 +4,7 @@ resources
 config.debug.toml
 .hugo_build.lock
 .vscode
+.claude/
+.codex
+.agent
+.qoder

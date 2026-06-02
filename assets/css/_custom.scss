@@ -109,3 +109,63 @@ kbd {
         border-color: rgba(231, 76, 60, 0.3);
     }
 }
+
+// Dropdown menu for nav
+#header-desktop .header-wrapper .menu {
+    overflow: visible !important;
+}
+
+.menu-item.has-dropdown {
+    display: inline-block;
+    position: relative;
+    margin: 0 .5rem;
+
+    .dropdown-toggle {
+        cursor: pointer;
+        .fa-chevron-down { font-size: 0.7em; margin-left: 2px; }
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        min-width: 120px;
+        background: var(--color-background, #fff);
+        border: 1px solid var(--color-contrast-lower, #e5e5e5);
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,.08);
+        z-index: 100;
+        padding: 2px 0;
+    }
+
+    &.open .dropdown-menu {
+        display: block;
+    }
+
+    &:hover .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-item {
+        display: block;
+        padding: 2px 16px;
+        font-size: 0.9em;
+        line-height: 1.4;
+        white-space: nowrap;
+
+        &:hover {
+            background: var(--color-contrast-lower, #f5f5f5);
+        }
+    }
+}
+
+[theme=dark] .menu-item.has-dropdown {
+    .dropdown-menu {
+        background: #2a2a2a;
+        border-color: #444;
+    }
+    .dropdown-item:hover {
+        background: #3a3a3a;
+    }
+}

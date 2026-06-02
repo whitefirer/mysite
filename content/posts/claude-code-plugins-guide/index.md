@@ -11,6 +11,7 @@ draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "ai", "claude code", "plugin", "development tools"]
+series: ["claude-code-deep-dive"]
 categories: ["Tech"]
 toc:
     auto: false
