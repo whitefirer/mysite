@@ -7,7 +7,7 @@ lastmod: 2026-06-02 03:50:00+08:00
 slug: "claude-code-hooks-guide"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 mermaid: true
 
