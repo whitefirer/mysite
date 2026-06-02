@@ -8,6 +8,8 @@ defaultTheme = "auto"
 favicon = "avatar.png"
 # public git repo url only then enableGitInfo is true
 gitRepo = "https://github.com/whitefirer/mysite"
+# 微信公众号预览服务地址（hugo server 模式下显示按钮）
+wechatPreviewURL = "http://127.0.0.1:3333"
 # which hash function used for SRI, when empty, no SRI is used
 fingerprint = ""
 # date format

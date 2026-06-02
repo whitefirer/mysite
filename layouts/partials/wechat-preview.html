@@ -1,0 +1,11 @@
+{{- /* 微信公众号预览按钮 — 仅 hugo server 模式显示 */ -}}
+{{- if hugo.IsServer -}}
+{{- $previewURL := .Site.Params.wechatPreviewURL | default "http://127.0.0.1:3333" -}}
+<a href="{{ $previewURL }}/preview/{{ .Slug }}" target="_blank" class="wechat-preview-btn"
+   title="微信公众号预览" style="display:inline-flex;align-items:center;gap:4px;padding:4px 10px;
+   font-size:13px;border-radius:6px;background:#1aad19;color:#fff;text-decoration:none;
+   margin-left:8px;vertical-align:middle;font-weight:500;transition:opacity .2s"
+   onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
+  📱 公众号预览
+</a>
+{{- end -}}
