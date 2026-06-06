@@ -1,7 +1,7 @@
 ---
-title: "Claude Code Hooks 指南：自动化你的 AI 编程工作流"
-subtitle: "九种 Hook 类型 + 十个秒用场景，把 Claude Code 从工具变成搭档"
-description: "全面介绍 Claude Code 的 Hooks 系统：PreToolUse、PostToolUse、Notification 等九种 Hook 的用法与实战，包含飞书通知、防呆操作、上下文注入等秒用场景。"
+title: "Claude Code Hooks 指南：事件驱动的 AI 编程自动化"
+subtitle: "九种 Hook 类型 + 十一个秒用场景，把 Claude Code 从工具变成搭档"
+description: "全面介绍 Claude Code 的 Hooks 系统：PreToolUse、PostToolUse、Notification 等九种 Hook 的用法与实战，包含本地桌面通知、飞书推送、危险命令拦截、上下文注入等十一个秒用场景。"
 date: 2026-06-02 03:50:00+08:00
 lastmod: 2026-06-02 03:50:00+08:00
 slug: "claude-code-hooks-guide"
@@ -18,7 +18,7 @@ toc:
     auto: false
 ---
 
-> 九种 Hook 类型 + 十个秒用场景，把 Claude Code 从工具变成搭档。
+> 九种 Hook 类型 + 十一个秒用场景，把 Claude Code 从工具变成搭档。
 
 ---
 
@@ -30,7 +30,7 @@ toc:
 
 Hooks 是 Claude Code 的事件驱动脚本机制——在工具调用、会话启停、权限请求等节点执行自定义逻辑。如果你用过 Git hooks 或 GitHub Actions，概念完全一样。
 
-读完你会知道：九种 Hook 分别干什么，怎么配，以及十个让你想立刻动手的妙用场景。
+读完你会知道：九种 Hook 分别干什么，怎么配，以及十一个让你想立刻动手的妙用场景。
 
 ---
 
@@ -146,7 +146,7 @@ Claude Code 弹出权限对话框之前触发。xiaozhi MCP 用它来记录权�
 
 ### Notification — 收到通知时
 
-外部系统可以通过通知机制向 Claude Code 发送消息。配合 cron 或 CI webhook 使用效果最佳。
+两种触发方式。一是 `permission_prompt` matcher：Claude Code 弹出权限对话框前触发，JSON 携带 `tool_name`、`tool_input`、`session_id`、`cwd`——你可以在权限请求到达屏幕之前先拿到上下文。二是外部系统推送：cron 或 CI webhook 通过通知机制向 Claude Code 发送消息。场景三会用第一种方式做本地桌面弹窗，场景七用第二种做远程审批。
 
 ### Stop — 响应结束时
 
@@ -162,7 +162,7 @@ Claude 回复完毕、进入等待状态时触发。适合做清理、保存状�
 
 ---
 
-## 十个秒用场景
+## 十一个秒用场景
 
 ### 场景一：自动格式化 + 刷新
 
@@ -224,7 +224,105 @@ sys.exit(0)
 
 不影响正常工作流，只在真正危险时亮红灯。
 
-### 场景三：长时间任务飞书通知
+### 场景三：本地桌面通知 — 权限请求带上命令内容
+
+前面两个场景分别管格式化和安全，都是"拦住 Claude"的逻辑。这个场景反过来——让 Claude 找你的时候，你能看到它在要什么。
+
+飞书推送（场景四、五、八）适合远程场景，但多数时候你就坐在电脑前。Linux 桌面栈（`notify-send` + `paplay`）零依赖、零延迟，是最直接的落地方式。
+
+配两条 Hook：Notification 拦截权限请求，Stop 响应任务完成。一条脚本两件事，按 `hook_event_name` 分派：
+
+```python
+#!/usr/bin/env python3
+# notify-hook — Notification (permission_prompt) + Stop
+import json, os, subprocess, sys
+from datetime import datetime
+
+SOUND_DIR = "/usr/share/sounds/freedesktop/stereo"
+
+def notify_send(title, body):
+    subprocess.run(["notify-send", title, body], timeout=5)
+
+def paplay(path):
+    subprocess.Popen(["paplay", path], stderr=subprocess.DEVNULL)
+
+def ellipsis(s, n=80):
+    return s if len(s) <= n else s[: n - 3] + "..."
+
+data = json.loads(sys.stdin.read())
+event = data.get("hook_event_name", "")
+
+if event == "Notification":
+    tool = data.get("tool_name", "?")
+    inp = data.get("tool_input", {})
+    detail = ""
+    if tool == "Bash":
+        detail = ellipsis(inp.get("command", ""), 100)
+    elif tool in ("Write", "Edit"):
+        detail = os.path.basename(inp.get("file_path", ""))
+    elif tool == "WebSearch":
+        detail = ellipsis(inp.get("query", ""), 100)
+
+    notify_send(f"Claude Code 需要授权 — {tool}", detail)
+    paplay(f"{SOUND_DIR}/dialog-information.oga")
+
+elif event == "Stop":
+    ts = data.get("timestamp", "")
+    time_str = ""
+    if ts:
+        try:
+            t = datetime.fromisoformat(str(ts).replace("Z", "+00:00"))
+            time_str = t.strftime("%H:%M:%S")
+        except (ValueError, TypeError):
+            pass
+    notify_send("Claude Code 任务完成", time_str)
+    paplay(f"{SOUND_DIR}/complete.oga")
+```
+
+配置 hooks：
+
+```json
+{
+  "hooks": {
+    "Notification": [{
+      "matcher": "permission_prompt",
+      "hooks": [{
+        "type": "command",
+        "command": "python3 /path/to/notify-hook",
+        "async": true
+      }]
+    }],
+    "Stop": [{
+      "matcher": "",
+      "hooks": [{
+        "type": "command",
+        "command": "python3 /path/to/notify-hook",
+        "async": true
+      }]
+    }]
+  }
+}
+```
+
+数据流很简单——Hook 负责把 JSON 从 Claude Code 管道丢给脚本，脚本按事件类型拆两路，分别拼消息、播音效：
+
+{{< mermaid >}}
+flowchart LR
+    A[Claude Code<br/>Hook 触发] -->|stdin JSON| B[notify-hook]
+    B -->|hook_event_name| C{事件分派}
+    C -->|Notification| D[取 tool_name<br/>tool_input]
+    C -->|Stop| E[取 timestamp]
+    D -->|拼消息| F["notify-send<br/>需要授权 — Bash: ..."]
+    E -->|拼消息| G["notify-send<br/>任务完成 · 20:30:00"]
+    F --> H[paplay 提示音]
+    G --> I[paplay 完成音]
+{{< /mermaid >}}
+
+核心只有一步——`json.loads(sys.stdin.read())` 拿到完整上下文，然后按 `tool_name` 从 `tool_input` 里取对应字段拼消息。这和场景二取 `command`、场景一取 `file_path` 的模式完全一致。Notification Hook 的 JSON payload 结构跟 PreToolUse 相同，学会取一次，所有 Hook 的通知识别都照这个模式来。
+
+需要远程推送时再看场景四（飞书）。坐电脑前，本地弹窗够用。
+
+### 场景四：长时间任务飞书通知
 
 Bash 跑了超过 5 分钟 → 飞书机器人推消息到你手机上。不需要盯着终端。
 
@@ -260,7 +358,7 @@ sys.exit(0)
 
 关键点：daemon 线程 + timeout=5，主进程立刻退出，HTTP 调用不阻塞 Claude Code。
 
-### 场景四：空闲超时飞书通知
+### 场景五：空闲超时飞书通知
 
 有时候不是你盯着 Claude Code 等它，而是它在等你——你切出去干别的，忘了回来。空闲超过 5 分钟，飞书推你。
 
@@ -313,9 +411,9 @@ sys.exit(0)
 
 核心技巧：`start_new_session=True` 让子进程脱离 Stop hook 的生命周期独立运行。每次 Claude 回复完毕触发 Stop，覆盖时间戳并重新启动一个检测器。如果连续 5 分钟没有新回复，上一次的检测器就会发通知。
 
-和场景三配合：场景三通知你"活干完了"，场景四通知你"你人跑了"。
+和场景四配合：场景四通知你"活干完了"，场景五通知你"你人跑了"。
 
-### 场景五：自动注入状态快照
+### 场景六：自动注入状态快照
 
 每次发消息，Claude 自动看到当前 git 状态和最近操作日志。不需要你手动 `git status`。
 
@@ -351,7 +449,7 @@ sys.exit(0)
 
 效果：Claude 始终知道工程的 git 状态，回答更准确，不需要你重复描述上下文。
 
-### 场景六：PreCompact 防上下文丢失
+### 场景七：PreCompact 防上下文丢失
 
 上下文压缩是 Claude Code 的自动机制，但可能丢掉关键任务信息。PreCompact Hook 在压缩前把当前任务状态写到一个恢复文件，压缩后 Claude 可以通过它找回方向。
 
@@ -377,7 +475,7 @@ sys.exit(0)
 
 配合 SessionStart Hook 读取这个备份文件，可以实现跨压缩的任务连续性。
 
-### 场景七：远程审批推送
+### 场景八：远程审批推送
 
 Hooks 的长链玩法：不只通知，还能让你在手机上直接审批 Claude Code 的权限请求。
 
@@ -463,9 +561,9 @@ Hook 退出了，但 Claude Code 原生权限弹窗还在等。这时候服务�
 
 飞书方案适合已有飞书工作流的团队，零客户端成本。自建 App 方案更轻量，WebSocket 长连接延迟更低。无论哪种，Hooks 做的都是第一环——**把权限请求从终端里拽出来，丢到你能触达的地方**。
 
-这模式不止用于权限审批。PreToolUse 拦截危险命令可以推，PostToolUse 长时间任务可以推，Stop 空闲提醒已经在场景四推了。把推送逻辑统一交给服务端，每个 Hook 只负责"触发事件"这一件事。
+这模式不止用于权限审批。PreToolUse 拦截危险命令可以推，PostToolUse 长时间任务可以推，Stop 空闲提醒已经在场景五推了。把推送逻辑统一交给服务端，每个 Hook 只负责"触发事件"这一件事。
 
-### 场景八：敏感文件保护
+### 场景九：敏感文件保护
 
 场景二拦截的是危险命令。但 Claude 还有一个能力是直接写文件——如果它误改了 `.env`、删了 SSH 密钥，命令拦截管不到。PreToolUse 配合 `Write|Edit` matcher 可以补上这个缺口。
 
@@ -499,7 +597,7 @@ sys.exit(0)
 
 和场景二一起配，Bash + Write/Edit 两条 PreToolUse 规则，一个管命令一个管文件，安全兜底就完整了。
 
-### 场景九：命令审计日志
+### 场景十：命令审计日志
 
 PostToolUse 在每次 Bash 执行后追加一条记录到审计日志。出问题时复现、排查误操作、分析 Claude 的命令习惯，全靠这条日志。
 
@@ -529,7 +627,7 @@ sys.exit(0)
 
 跑一阵子后 `cat ~/.claude/bash-audit.log` 就能看到 Claude 都执行了什么、哪些慢、哪些容易失败。安全审计 + 性能诊断两用。
 
-### 场景十：Stop 强制验证——"不跑通不下班"
+### 场景十一：Stop 强制验证——"不跑通不下班"
 
 前面的场景是"做完了通知你"和"你忘了回来提醒你"。这个场景反过来——Claude 想结束响应？先自检：代码改了吗？测试跑了吗？构建通过了吗？
 
@@ -553,7 +651,7 @@ sys.exit(0)
 
 ## 插件：Hooks 的打包形态
 
-上面十个场景都是自定义 Hook 脚本。但如果你留意过自己装的插件，会发现很多插件本质上就是打包好的 Hooks。
+上面十一个场景都是自定义 Hook 脚本。但如果你留意过自己装的插件，会发现很多插件本质上就是打包好的 Hooks。
 
 以你环境里实际跑着的为例：
 
@@ -569,7 +667,7 @@ sys.exit(0)
 - `UserPromptSubmit` → 检测用户意图，自动匹配对应 Skill 并加载
 - `Stop` → 完成检查点验证，确保开发流程不跳步
 
-你会发现这些插件做的事情和前面十个场景本质上一样——Hook 拦截事件，注入逻辑。区别只在于插件把这些 Hook + Skills + 提示词打包好，你可以开箱即用；而自定义 Hook 脚本是给你最灵活的底层能力，配一次想怎么玩都行。
+你会发现这些插件做的事情和前面十一个场景本质上一样——Hook 拦截事件，注入逻辑。区别只在于插件把这些 Hook + Skills + 提示词打包好，你可以开箱即用；而自定义 Hook 脚本是给你最灵活的底层能力，配一次想怎么玩都行。
 
 选插件还是自己写？简单法则：**重复出现的通用流程 → 找插件。一次性特定需求 → 自己写 Hook。两者不互斥——插件管大流程，自定义 Hook 补边角。**
 
@@ -577,18 +675,19 @@ sys.exit(0)
 
 ## 组合拳：推荐配置
 
-从十种场景里挑最值的六条，这是我的推荐：
+从十一种场景里挑最值的七条，这是我的推荐：
 
-1. **PreToolUse** — 危险命令拦截 + 敏感文件保护（场景二 + 八，合并一条规则）
-2. **PostToolUse** — 自动格式化 + 审计日志（场景一 + 九）
-3. **PostToolUse** — 长任务飞书通知（场景三，改 Slack/钉钉同理）
-4. **Stop** — 空闲超时飞书通知（场景四）
-5. **UserPromptSubmit** — git 状态注入（场景五）
-6. **Stop** — 强制验证（场景十，宽松起步）
+1. **PreToolUse** — 危险命令拦截 + 敏感文件保护（场景二 + 九，合并一条规则）
+2. **PostToolUse** — 自动格式化 + 审计日志（场景一 + 十）
+3. **Notification + Stop** — 本地桌面通知（场景三，Linux 桌面首选，不需要飞书等外部依赖）
+4. **PostToolUse** — 长任务飞书通知（场景四，改 Slack/钉钉同理）
+5. **Stop** — 空闲超时飞书通知（场景五）
+6. **UserPromptSubmit** — git 状态注入（场景六）
+7. **Stop** — 强制验证（场景十一，宽松起步）
 
-远程审批（场景七）需要额外服务端，PreCompact（场景六）按需启用，先不放进基础配置。
+远程审批（场景八）需要额外服务端，PreCompact（场景七）按需启用，先不放进基础配置。
 
-全部配在 `~/.claude/settings.json`，一次配置，所有项目生效。场景十的 Stop 强制验证可以先从宽松规则开始——只检查"测试跑没跑"，不检查通过率——等 Claude 习惯了再收紧。
+全部配在 `~/.claude/settings.json`，一次配置，所有项目生效。场景十一的 Stop 强制验证可以先从宽松规则开始——只检查"测试跑没跑"，不检查通过率——等 Claude 习惯了再收紧。
 
 ---
 
