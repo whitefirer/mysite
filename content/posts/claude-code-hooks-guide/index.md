@@ -1,5 +1,5 @@
 ---
-title: "Claude Code Hooks 指南：事件驱动的 AI 编程自动化"
+title: "Claude Code Hooks 完全指南：事件驱动的 AI 编程自动化"
 subtitle: "九种 Hook 类型 + 十一个秒用场景，把 Claude Code 从工具变成搭档"
 description: "全面介绍 Claude Code 的 Hooks 系统：PreToolUse、PostToolUse、Notification 等九种 Hook 的用法与实战，包含本地桌面通知、飞书推送、危险命令拦截、上下文注入等十一个秒用场景。"
 date: 2026-06-02 03:50:00+08:00
