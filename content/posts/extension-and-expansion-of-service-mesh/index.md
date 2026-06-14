@@ -11,6 +11,7 @@ draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "cloud native", "service mesh"]
+series: ["基础架构"]
 categories: ["Tech"]
 toc:
     auto: false

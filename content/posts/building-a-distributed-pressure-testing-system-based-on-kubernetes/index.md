@@ -11,6 +11,7 @@ draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "cloud native"]
+series: ["基础架构"]
 categories: ["Tech"]
 toc:
     auto: false

@@ -11,6 +11,7 @@ hiddenFromHomePage: false
 mermaid: true
 
 tags: ["tech", "cloud native", "service mesh", "istio"]
+series: ["基础架构"]
 categories: ["Tech"]
 toc:
     auto: false

@@ -9,7 +9,7 @@ author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: false
 hiddenFromHomePage: false
-sticky: false
+sticky: true
 mermaid: false
 
 series: ["ai-zatan"]

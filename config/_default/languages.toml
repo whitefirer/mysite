@@ -16,6 +16,14 @@
     url = "/series/ai-zatan/"
     title = ""
   [[zh-cn.menu.main]]
+    weight = 3
+    identifier = "基础架构"
+    pre = ""
+    post = ""
+    name = "基础架构"
+    url = "/series/%E5%9F%BA%E7%A1%80%E6%9E%B6%E6%9E%84/"
+    title = ""
+  [[zh-cn.menu.main]]
     weight = 2
     identifier = "ai-programming"
     pre = ""
@@ -33,7 +41,7 @@
     url = "/series/claude-code-deep-dive/"
     title = ""
   [[zh-cn.menu.main]]
-    weight = 3
+    weight = 4
     identifier = "posts"
     pre = ""
     post = ""
@@ -41,7 +49,7 @@
     url = "/posts/"
     title = ""
   [[zh-cn.menu.main]]
-    weight = 4
+    weight = 5
     identifier = "tags"
     pre = ""
     post = ""
@@ -49,7 +57,7 @@
     url = "/tags/"
     title = ""
   [[zh-cn.menu.main]]
-    weight = 5
+    weight = 6
     identifier = "categories"
     pre = ""
     post = ""
@@ -57,7 +65,7 @@
     url = "/categories/"
     title = ""
   [[zh-cn.menu.main]]
-    weight = 6
+    weight = 7
     identifier = "about"
     pre = ""
     post = ""
