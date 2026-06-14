@@ -7,7 +7,7 @@ lastmod: 2026-06-15 05:50:00+08:00
 slug: "ebpf-ai-service-mesh"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "ebpf", "service-mesh", "ai", "observability"]
