@@ -7,7 +7,7 @@ lastmod: 2026-06-15 10:00:00+08:00
 slug: "cloud-native-to-ai-transformation"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 sticky: false
 mermaid: false
