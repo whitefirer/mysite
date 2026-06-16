@@ -1,0 +1,17 @@
+{{- /* 文章访问计数 — hits.sh，放在阅读时间后
+   prod: 1px 隐身 img，照常加载触发计数，不可见
+   hugo server: 显示完整 badge，看真实累计访问量
+   key = whitefirer.org + 文章路径，每篇独立计数 */ -}}
+{{- $key := printf "whitefirer.org%s" (.RelPermalink | strings.TrimSuffix "/") -}}
+{{- $src := printf "https://hits.sh/%s.svg" $key -}}
+{{- $statsURL := printf "https://hits.sh/%s/" $key -}}
+{{- if hugo.IsServer -}}
+<span class="post-hits">
+  &nbsp;<a href="{{ $statsURL }}" target="_blank" title="访问统计">
+    <img src="{{ $src }}?style=flat-square&label=&color=D97757&labelColor=1f2937&logo=googleanalytics&logoColor=white" alt="访问量" style="vertical-align:middle;height:20px;border-radius:4px">
+  </a>
+</span>
+{{- else -}}
+<img src="{{ $src }}" alt="" aria-hidden="true" loading="eager"
+     style="position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0 0 0 0);pointer-events:none">
+{{- end -}}

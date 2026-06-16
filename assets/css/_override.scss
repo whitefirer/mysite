@@ -1,0 +1,21 @@
+// ==============================
+// Override Variables — Claude 橙主题色
+// 替换主题默认 teal/blue 强调色，统一为 Anthropic Claude 暖橙
+// 仅覆盖强调色族；inline code 红、语法高亮、滚动条保持原样
+// ==============================
+
+// 全站链接 hover
+$global-link-hover-color: #D97757;
+
+// 文章正文链接
+$single-link-color: #D97757;
+$single-link-color-dark: #D88566;
+$single-link-hover-color: #C15F3C;
+$single-link-hover-color-dark: #E8A98C;
+
+// 分页
+$pagination-link-color: #D97757;
+
+// 引用块左边框
+$blockquote-color: #D97757;
+$blockquote-color-dark: #D88566;

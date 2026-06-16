@@ -135,4 +135,4 @@ draft: false
 ### 微信扫码  
 <img src="wechat.jpg" alt="wechat" height="160" align="center" />
 
-<img src="https://github-profile-trophy.vercel.app/?username=whitefirer&theme=vue&column=7&margin-w=10" alt="logo" height="160" align="center" />
+<img src="https://github-profile-trophy.vercel.app/?username=whitefirer&theme=gruvbox&column=7&margin-w=10" alt="logo" height="160" align="center" />
