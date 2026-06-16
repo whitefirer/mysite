@@ -1,7 +1,7 @@
 # Menu config
 [zh-cn]
   weight = 1
-  title = "whitefirer[PG]"
+  title = "赛博闲谭-whitefirer"
   languageCode = "zh-CN"
   languageName = "简体中文"
   hasCJKLanguage = true
@@ -90,7 +90,7 @@
       title = "Rss"
 [en]
   weight = 2
-  title = "whitefirer[PG]"
+  title = "赛博闲谭-whitefirer"
   languageCode = "en"
   languageName = "English"
   [[en.menu.main]]

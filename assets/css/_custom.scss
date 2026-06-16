@@ -169,3 +169,22 @@ kbd {
         background: #3a3a3a;
     }
 }
+
+// Thin scrollbar for xterm.js console-box terminal
+.xterm-viewport {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #2D2E2C;
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+        background: #2D2E2C;
+    }
+    &::-webkit-scrollbar-thumb {
+        background: #666;
+        border-radius: 3px;
+        &:hover {
+            background: #888;
+        }
+    }
+}

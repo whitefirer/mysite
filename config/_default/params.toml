@@ -15,7 +15,7 @@ fingerprint = ""
 # date format
 dateFormat = "2006-01-02"
 # website title for Open Graph and Twitter Cards
-title = "whitefirer[PG]"
+title = "赛博闲谭-whitefirer"
 # website description for RSS, SEO, Open Graph and Twitter Cards
 description = "Welcome to the blog of whitefirer."
 # website images for Open Graph and Twitter Cards
@@ -29,7 +29,7 @@ images = []
   mobileMode = "auto"
   [header.title]
     logo = ""
-    name = "whitefirer[PG]"
+    name = "赛博闲谭-whitefirer"
     pre = ""
     post = ""
     typeit = false
@@ -59,7 +59,7 @@ images = []
 
 # App icon config
 [app]
-  title = "whitefirer[PG]"
+  title = "赛博闲谭-whitefirer"
   noFavicon = false
   svgFavicon = ""
   themeColor = "#ffffff"
@@ -90,14 +90,13 @@ images = []
     avatarURL = "/avatar.png"
     title = "whitefirer"
     subtitle = [
-      "Go big or go home",
-      "Cloud Native and Architecture Design",
-      "人生苦短，何不用python. 星汉灿烂，道阻且长go.",
+      "从云原生到 AI 工程化",
+      "Cloud Native × AI Engineering",
       "难度即价值所在",
     ]
     typeit = true
     social = true
-    disclaimer = ""
+    disclaimer = "Aeraki Maintainer · IstioCon 2022"
   [home.posts]
     enable = true
     paginate = 6
