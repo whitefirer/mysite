@@ -20,10 +20,12 @@
 
         {{- /* Posts */ -}}
         {{- if ne $posts.enable false | and .Site.RegularPages -}}
-            {{- /* Sticky posts */ -}}
+            {{- /* Sticky posts — only on first page */ -}}
             {{- $stickies := where .Site.RegularPages "Params.sticky" true -}}
-            {{- range $stickies -}}
-                {{- .Render "summary" -}}
+            {{- if not .Paginator.HasPrev -}}
+                {{- range $stickies -}}
+                    {{- .Render "summary" -}}
+                {{- end -}}
             {{- end -}}
             {{- /* Paginate */ -}}
             {{- $pages := where .Site.RegularPages "Type" "posts" -}}
