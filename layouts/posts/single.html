@@ -18,6 +18,7 @@
         </div>
     {{- end -}}
 
+    <div id="reading-progress"></div>
     <article class="page single">
         {{- /* Title */ -}}
         <div style="display:flex;align-items:baseline;gap:0">
@@ -142,4 +143,5 @@
         {{- /* Comment */ -}}
         {{- partial "comment.html" . -}}
     </article>
+<script>(function(){var b=document.getElementById('reading-progress');if(!b)return;function u(){var h=document.documentElement,s=h.scrollHeight-h.clientHeight,w=s>0?Math.min((h.scrollTop||document.body.scrollTop)/s*100,100):0;b.style.width=w+'%'}window.addEventListener('scroll',u,{passive:true});u()})();</script>
 {{- end -}}
