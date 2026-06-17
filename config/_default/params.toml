@@ -234,6 +234,7 @@ images = []
     Pocket = false
     Flipboard = false
     Weibo = true
+    Wechat = true
     Blogger = false
     Baidu = false
     Odnoklassniki = false
