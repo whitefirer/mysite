@@ -1,0 +1,14 @@
+# Netlify build configuration
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "hugo --gc --minify"
+  publish = "public"
+
+[build.environment]
+  HUGO_VERSION = "0.131.0"
+  NODE_VERSION = "22"
+
+# Disable legacy prerendering (deprecated)
+# If still enabled in Netlify UI, go to:
+# Site settings > Build & deploy > Prerendering > Disable
