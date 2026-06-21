@@ -34,14 +34,15 @@
             {{- else -}}
                 {{- $pages = where $pages "Params.hiddenfromhomepage" "!=" true -}}
             {{- end -}}
-            {{- $pages = $pages | complement $stickies -}}
             {{- with $posts.paginate | default .Site.Params.paginate -}}
                 {{- $pages = $.Paginate $pages . -}}
             {{- else -}}
                 {{- $pages = .Paginate $pages -}}
             {{- end -}}
             {{- range $pages.Pages -}}
-                {{- .Render "summary" -}}
+                {{- if not .Params.sticky -}}
+                    {{- .Render "summary" -}}
+                {{- end -}}
             {{- end -}}
             {{- partial "paginator.html" . -}}
         {{- end -}}

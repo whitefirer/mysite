@@ -96,7 +96,7 @@ images = []
     ]
     typeit = true
     social = true
-    disclaimer = "Aeraki Maintainer · IstioCon 2022"
+    disclaimer = "AI Harness Engineer · IstioCon 2022"
   [home.posts]
     enable = true
     paginate = 6

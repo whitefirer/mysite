@@ -26,8 +26,8 @@
                     </article>
                 {{- end -}}
             {{- end -}}
-            {{- /* Regular posts grouped by date */ -}}
-            {{- $regularPages := .Pages | complement $stickies -}}
+            {{- /* Regular posts grouped by date (stickies excluded in loop) */ -}}
+            {{- $regularPages := .Pages -}}
             {{- $pages := $regularPages.GroupByDate "2006" -}}
             {{- with .Site.Params.section.paginate | default .Site.Params.paginate -}}
                 {{- $pages = $.Paginate $pages . -}}
@@ -37,6 +37,7 @@
             {{- range $pages.PageGroups -}}
                 <h3 class="group-title">{{ .Key }}</h3>
                 {{- range .Pages -}}
+                    {{- if not .Params.sticky -}}
                     <article class="archive-item">
                         <a href="{{ .RelPermalink }}" class="archive-item-link">
                             {{- .Title | emojify -}}
@@ -45,6 +46,7 @@
                             {{- $.Site.Params.section.dateFormat | default "01-02" | .Date.Format -}}
                         </span>
                     </article>
+                    {{- end -}}
                 {{- end -}}
             {{- end -}}
             {{- partial "paginator.html" . -}}
