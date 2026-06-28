@@ -22,11 +22,11 @@ toc:
 
 ## 前言
 
-2026 年 6 月 9 日，Anthropic 发布 Claude Fable 5——Claude 5 系列的第一个模型，Mythos 级，号称比 Opus 更智能。发布后不到 72 小时，知名红队研究者 Pliny the Liberator 在 GitHub 上公开了 Fable 5 的完整系统提示词：[120,040 个字符，1,585 行，约 30,000 token，55 个命名章节](https://github.com/elder-plinius/CL4R1T4S/blob/master/ANTHROPIC/CLAUDE-FABLE-5.md)。
+2026 年 6 月 9 日，Anthropic 发布 Claude Fable 5——Claude 5 系列的第一个模型，Mythos 级，号称比 Opus 更智能。发布后不到 72 小时，知名红队研究者 Pliny the Liberator 在 GitHub 上公开了 Fable 5 的完整系统提示词[^1]：120,040 个字符，1,585 行，约 30,000 token，55 个命名章节。
 
 华盛顿邮报、36氪、腾讯科技都报道了这件事。但大部分报道聚焦在"被禁"和"复活"的戏剧性上，真正有价值的东西——那份提示词本身——很少有人拆开看。
 
-我花了几天时间把它从头到尾读完了，同时对比了同仓库下的 Claude Opus 4.8 提示词。结论是：**这份提示词不是一份魔法咒语，而是一份 AI Agent 的操作系统手册。**
+我花了几天时间把它从头到尾读完了，同时对比了按版本归档的 Claude Opus 4.8 提示词[^2]。结论是：**这份提示词不是一份魔法咒语，而是一份 AI Agent 的操作系统手册。**
 
 ---
 
@@ -41,7 +41,7 @@ toc:
 
 </figure>
 
-对比 Opus 4.8，Fable 5 的提示词从 1,409 行膨胀到 1,598 行，净增 13%。增长的 token 大部分不在安全规则或人格描述上，而在**能力规范**——工具定义、搜索规则、Artifacts 渲染、MCP 连接器目录。这和 AI 行业分析机构 AlphaSignal 的解读一致：50% 以上的提示词是能力规范，不是人格设定。
+对比 Opus 4.8，Fable 5 的提示词从 1,409 行膨胀到 1,598 行，净增 13%。增长的 token 大部分不在安全规则或人格描述上，而在**能力规范**——工具定义、搜索规则、Artifacts 渲染、MCP 连接器目录。这和 AI 行业分析机构 AlphaSignal 的解读一致[^3]：50% 以上的提示词是能力规范，不是人格设定。
 
 这意味着，**提示词工程正在从"怎么写人设"转向"怎么定义操作系统"。** Fable 5 的提示词不是告诉它"你要友善"，而是告诉它"你能调这些工具，按这个顺序，在这个时机，处理这个异常"。
 
@@ -253,3 +253,14 @@ Anthropic 没有把它加密、混淆或藏起来，它就在网上，任何人�
 下一篇回归工程实战——从这份提示词的设计原则出发，讲讲怎么搭一个开源版的最小 Agent Harness。给你一个能跑起来的例子，你也能自己玩。
 
 *感谢阅读。*
+
+---
+
+**参考资料**
+
+[^1]: Fable 5 完整系统提示词——[CLAUDE-FABLE-5.md](https://github.com/elder-plinius/CL4R1T4S/blob/master/ANTHROPIC/CLAUDE-FABLE-5.md)，Pliny the Liberator / CL4R1T4S
+[^2]: Anthropic 提示词按版本 diff 归档——[system_prompts_leaks](https://github.com/asgeirtj/system_prompts_leaks)，含 Fable 5、Opus 4.8 等
+[^3]: AlphaSignal [《Claude Fable 5 Prompt Leak Is a User's Manual for AI Agents》](https://alphasignalai.substack.com/p/claude-fable-5-prompt-leak-is-a-user) ——提示词 token 预算分析
+[^4]: AY Automate [《Claude Fable 5 System Prompt Leak — Full Technical Breakdown》](https://www.ayautomate.com/blog/claude-fable-5-system-prompt-leak) ——1,585 行逐节拆解
+[^5]: 华盛顿邮报 [《Anthropic Leak Reveals Inner Workings of Claude AI》](https://www.washingtonpost.com/technology/2026/05/11/anthropic-system-prompt-leak/) ——事件媒体报道
+[^6]: 腾讯科技 [《Claude Fable 5 系统提示词曝光》](https://cloud.tencent.com/developer/article/2687467) ——中文技术社区解读
