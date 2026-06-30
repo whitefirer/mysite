@@ -232,7 +232,7 @@ Unicode 隐写只是一个手段。明天可以是 token 长度差异、可以�
 
 ---
 
-## 参考资料
+**参考资料**
 
 [^1]: Anthropic npm 打包失误泄漏 51.2 万行源码——[Towards AI 报道](https://pub.towardsai.net/anthropic-blocked-china-from-using-claude-then-accidentally-gave-them-the-entire-source-code-ed31321d141b)；[腾讯科技中文分析](https://cloud.tencent.com.cn/developer/article/2689122)
 [^2]: MITRE ATT&CK C0062——[Anthropic AI-orchestrated Campaign](https://attack.mitre.org/campaigns/C0062/)，2026 年 4 月 20 日收录
