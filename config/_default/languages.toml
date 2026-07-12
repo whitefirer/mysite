@@ -41,6 +41,15 @@
     url = "/series/claude-code-deep-dive/"
     title = ""
   [[zh-cn.menu.main]]
+    weight = 2
+    parent = "ai-programming"
+    identifier = "ai-programming-harness"
+    pre = ""
+    post = ""
+    name = "Harness Engineering"
+    url = "/series/harness-engineering/"
+    title = ""
+  [[zh-cn.menu.main]]
     weight = 4
     identifier = "posts"
     pre = ""
