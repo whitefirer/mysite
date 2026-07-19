@@ -11,6 +11,7 @@ draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "ai", "productivity", "history", "electricity", "industry"]
+series: ["ai-zatan"]
 categories: ["Tech"]
 toc:
     auto: false
