@@ -8,3 +8,4 @@ config.debug.toml
 .codex
 .agent
 .qoder
+.edit-token

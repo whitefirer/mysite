@@ -1,0 +1,80 @@
+{{- /* 开发模式页内编辑器 + 外部打开 —— 仅 hugo server 渲染，生产构建无痕迹 */ -}}
+{{- if hugo.IsServer -}}
+{{- $editURL := .Site.Params.editServerURL | default "" -}}
+{{- $editToken := "" -}}
+{{- if os.FileExists ".edit-token" -}}{{- $editToken = readFile ".edit-token" | chomp -}}{{- end -}}
+<div style="position:fixed;right:18px;bottom:18px;z-index:9990;display:flex;gap:6px;font:12px system-ui,sans-serif;">
+  <button id="dev-edit-open" style="padding:6px 12px;border:0;border-radius:6px;background:#2d3748;color:#fff;cursor:pointer;opacity:.8;">✎ 网页编辑</button>
+  <select id="dev-open-with" style="padding:6px 4px;border:0;border-radius:6px;background:#2d3748;color:#fff;opacity:.8;cursor:pointer;">
+    <option value="">外部打开…</option>
+    <option value="vscode">VS Code</option>
+    <option value="cursor">Cursor</option>
+    <option value="copy">复制文件路径</option>
+  </select>
+</div>
+<div id="dev-edit-drawer" style="position:fixed;top:0;right:0;width:min(760px,94vw);height:100vh;background:#fff;box-shadow:-4px 0 16px rgba(0,0,0,.25);transform:translateX(105%);transition:transform .2s ease;z-index:10000;display:flex;flex-direction:column;">
+  <div style="padding:8px 12px;background:#2d3748;color:#fff;display:flex;gap:10px;align-items:center;font:13px system-ui,sans-serif;">
+    <b style="flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">content/{{ .File.Path }}</b>
+    <button id="dev-edit-save" style="padding:4px 14px;cursor:pointer;">保存 (Ctrl+S)</button>
+    <span id="dev-edit-status"></span>
+    <button id="dev-edit-close" style="padding:4px 10px;cursor:pointer;font-size:15px;">×</button>
+  </div>
+  <textarea id="dev-edit-text" spellcheck="false" style="flex:1;border:0;padding:16px;font:13px/1.7 ui-monospace,Consolas,monospace;outline:none;resize:none;"></textarea>
+</div>
+<style>
+#dev-edit-drawer .EasyMDEContainer{flex:1;display:flex;flex-direction:column;min-height:0}
+#dev-edit-drawer .CodeMirror{flex:1;font:13px/1.7 ui-monospace,Consolas,monospace;height:auto}
+#dev-edit-drawer .editor-toolbar{border:0;border-bottom:1px solid #eee}
+</style>
+<script>
+(function(){
+  var drawer=document.getElementById('dev-edit-drawer'),
+      ta=document.getElementById('dev-edit-text'),
+      st=document.getElementById('dev-edit-status'),
+      base=("{{ $editURL }}"||(location.protocol+'//'+location.hostname+':3333')),
+      token="{{ $editToken }}",
+      fpath="{{ .File.Path }}",
+      absPath="{{ hugo.WorkingDir }}/content/{{ .File.Path }}",
+      loaded=false,open=false,mde=null;
+  function content(){return mde?mde.value():ta.value;}
+  function initEditor(){
+    if(mde||!window.EasyMDE)return;
+    mde=new EasyMDE({element:ta,spellChecker:false,status:false,minHeight:'0px',
+      toolbar:['bold','italic','link','code','quote','unordered-list','|','preview','fullscreen']});
+    mde.codemirror.on('keydown',function(cm,e){
+      if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();save();}});
+  }
+  function loadLib(){
+    if(window.EasyMDE){initEditor();return;}
+    var l=document.createElement('link');l.rel='stylesheet';
+    l.href='https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.css';
+    document.head.appendChild(l);
+    var s=document.createElement('script');
+    s.src='https://cdn.jsdelivr.net/npm/easymde@2.18.0/dist/easymde.min.js';
+    s.onload=initEditor;s.onerror=function(){/* CDN 不可达就退回纯 textarea */};
+    document.head.appendChild(s);
+  }
+  function show(){open=true;drawer.style.transform='translateX(0)';
+    if(!loaded){ta.value='加载中…';
+      fetch(base+'/raw?path='+encodeURIComponent(fpath)+'&token='+encodeURIComponent(token))
+        .then(function(r){return r.text()}).then(function(t){ta.value=t;loaded=true;loadLib();})
+        .catch(function(){ta.value='加载失败：编辑服务未启动？运行 hugo2wechat 的 preview.py';});}}
+  function hide(){open=false;drawer.style.transform='translateX(105%)';}
+  function save(){
+    fetch(base+'/save',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body:new URLSearchParams({token:token,path:fpath,content:content()})})
+      .then(function(r){return r.text()}).then(function(t){st.textContent=' '+t;setTimeout(function(){st.textContent=''},2000);})
+      .catch(function(){st.textContent=' 保存失败';});}
+  document.getElementById('dev-edit-open').onclick=show;
+  document.getElementById('dev-edit-close').onclick=hide;
+  document.getElementById('dev-edit-save').onclick=save;
+  document.addEventListener('keydown',function(e){
+    if((e.ctrlKey||e.metaKey)&&e.key==='s'&&open){e.preventDefault();save();}
+    if(e.key==='Escape'&&open){hide();}});
+  document.getElementById('dev-open-with').onchange=function(){
+    var v=this.value;this.selectedIndex=0;
+    if(v==='copy'){navigator.clipboard.writeText(absPath);return;}
+    if(v){location.href=v+'://file'+absPath;}};
+})();
+</script>
+{{- end -}}

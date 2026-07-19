@@ -137,6 +137,9 @@
         {{- end -}}
         </div>
 
+        {{- /* Dev-only: in-page editor (never rendered in production) */ -}}
+        {{- partial "dev-editor.html" . -}}
+
         {{- /* Footer */ -}}
         {{- partial "single/footer.html" . -}}
 
