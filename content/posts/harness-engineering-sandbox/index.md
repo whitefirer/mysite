@@ -3,11 +3,11 @@ title: "Harness Engineering 之二：给 Agent 搭一个安全沙箱"
 subtitle: "Prompt 是劝，沙箱是墙——Hook 拦截、文件系统隔离、网络熔断、进程监狱，四层递进防御从零搭起"
 description: "Agent 沙箱不是二进制选择（有/没有），是四层递进防御：Hook 预检 → 文件系统隔离 → 网络熔断 → 进程监狱。每层拦不同类型的灾难，本文给每层一个可运行的配置。"
 date: 2026-07-19 04:30:00+08:00
-lastmod: 2026-07-19 04:30:00+08:00
+lastmod: 2026-07-24 19:30:00+08:00
 slug: "harness-engineering-sandbox"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 
 tags: ["tech", "ai", "harness engineering", "agent", "sandbox", "claude code", "security"]
