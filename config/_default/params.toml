@@ -1,8 +1,3 @@
-# Author config
-[author]
-  name = "whitefirer"
-  email = "whitefirer@gmail.com"
-  link = "https://whitefirer.org"
 # site default theme ["auto", "light", "dark"]
 defaultTheme = "auto"
 favicon = "avatar.png"
@@ -20,6 +15,12 @@ title = "赛博闲谭-whitefirer"
 description = "Welcome to the blog of whitefirer."
 # website images for Open Graph and Twitter Cards
 images = []
+
+# Author config
+[author]
+  name = "whitefirer"
+  email = "whitefirer@gmail.com"
+  link = "https://whitefirer.org"
 
 # Header config
 [header]

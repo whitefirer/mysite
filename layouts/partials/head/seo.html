@@ -20,8 +20,16 @@
 {{- $ogImage := "/og-default.png" -}}
 {{- with .Resources.GetMatch "featured-image*" -}}
     {{- $ogImage = .Permalink -}}
+{{- else -}}
+    {{- with .Resources.GetMatch "cover*" -}}
+        {{- $ogImage = .Permalink -}}
+    {{- end -}}
 {{- end -}}
-<meta property="og:title" content="{{ .Title }} - {{ .Site.Title }}" />
+{{- $seoTitle := .Site.Title -}}
+{{- if and .Title (ne .Title .Site.Title) -}}
+    {{- $seoTitle = printf "%s - %s" .Title .Site.Title -}}
+{{- end -}}
+<meta property="og:title" content="{{ $seoTitle }}" />
 <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta property="og:image" content="{{ $ogImage | absURL }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
@@ -30,7 +38,7 @@
 
 {{- /* Twitter Card */ -}}
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="{{ .Title }} - {{ .Site.Title }}" />
+<meta name="twitter:title" content="{{ $seoTitle }}" />
 <meta name="twitter:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
 <meta name="twitter:image" content="{{ $ogImage | absURL }}" />
 
