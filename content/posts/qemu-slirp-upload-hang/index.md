@@ -2,8 +2,8 @@
 title: "QEMU slirp 上传卡死 300 秒：从应用层一路追到网络层的排查实录"
 subtitle: "上传稍大的文件就挂起约 5 分钟——小图正常、localhost 正常、局域网 IP 卡死。一次从 sharp 假说、浏览器差异、multipart 解析，最终定位到 QEMU slirp TCP 缺陷的完整排查"
 description: "QEMU 虚拟机走 slirp 用户态网络时，单请求 body 超过 ~256KB 会 TCP 卡死约 300 秒。本文记录从应用层（sharp 挂起假说）→ 浏览器差异 → multipart 解析 → 网络层的完整排查过程，以及应用层分块上传的解决方案。"
-date: 2026-08-14 10:00:00+08:00
-lastmod: 2026-08-14 10:00:00+08:00
+date: 2026-08-13 23:00:00+08:00
+lastmod: 2026-08-13 23:00:00+08:00
 slug: "qemu-slirp-upload-hang"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
