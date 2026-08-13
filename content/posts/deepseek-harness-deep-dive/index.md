@@ -2,8 +2,8 @@
 title: "DeepSeek Harness 全拆解：开源首日破 3 万 star 的 Agent 运行时，硬在哪"
 subtitle: "事件溯源会话、surface 阴影压缩、fail-closed 沙箱、automation-only 的 ACP——一个 219 包插件化架构的完整解剖"
 description: "DeepSeek 开源 dsh 首日破 3 万 star。本文从决策记录与源码逐层拆解：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及'它为什么不是 Codex 竞品'的架构级答案。"
-date: 2026-08-15 08:00:00+08:00
-lastmod: 2026-08-15 08:00:00+08:00
+date: 2026-08-14 08:42:47+08:00
+lastmod: 2026-08-14 08:42:47+08:00
 slug: "deepseek-harness-deep-dive"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"

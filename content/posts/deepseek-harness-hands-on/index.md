@@ -2,8 +2,8 @@
 title: "DeepSeek Harness 实测：开源当晚破 3 万 star 的 Agent 运行时"
 subtitle: "Agent = Model + Harness：插件生态、事件溯源、自我验收——一个可重组的 Agent 运行时实测记录"
 description: "DeepSeek 开源 deepseek-harness 当晚破 3 万 star。本文实测：headless 秒回、1.1M token 的长思考任务、agent 自我验收闭环、官方内置 130 插件与灰度期社区插件、审批机制与事件溯源日志实证。结论：它不是 Codex 竞品，是组装 Agent 的基础设施。"
-date: 2026-08-14 00:30:00+08:00
-lastmod: 2026-08-14 00:30:00+08:00
+date: 2026-08-13 23:51:33+08:00
+lastmod: 2026-08-13 23:51:33+08:00
 slug: "deepseek-harness-hands-on"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
