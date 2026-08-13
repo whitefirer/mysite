@@ -1,7 +1,7 @@
 ---
 title: "DeepSeek Harness 实测：开源当晚破 3 万 star 的 Agent 运行时"
 subtitle: "Agent = Model + Harness：插件生态、事件溯源、自我验收——一个可重组的 Agent 运行时实测记录"
-description: "DeepSeek 开源 deepseek-harness 当晚破 3 万 star。本文实测：headless 秒回、1.1M token 的长思考任务、agent 自我验收闭环、社区插件 6 小时长出 IDE 级生态、审批机制与事件溯源日志实证。结论：它不是 Codex 竞品，是组装 Agent 的基础设施。"
+description: "DeepSeek 开源 deepseek-harness 当晚破 3 万 star。本文实测：headless 秒回、1.1M token 的长思考任务、agent 自我验收闭环、官方内置 130 插件与灰度期社区插件、审批机制与事件溯源日志实证。结论：它不是 Codex 竞品，是组装 Agent 的基础设施。"
 date: 2026-08-14 00:30:00+08:00
 lastmod: 2026-08-14 00:30:00+08:00
 slug: "deepseek-harness-hands-on"
@@ -94,9 +94,9 @@ dsh --profile headless "用一句话说明什么是 RPC"
 
 **默认策略是 ask**：涉及工作区之外的写入，模型不能自作主张，必须人点"允许"。headless 自动化没有审批人，任务就永远挂着。这对想做无人值守自动化的团队是个真实提醒：**DSH 的权限边界是硬约束，不是摆设**——而它的策略状态（workspace-write / ask）是直接写进会话日志的，重启不丢（详见下节）。
 
-## 五、插件实测："一切皆插件"不是口号，6 小时长出 IDE 级生态
+## 五、插件实测："一切皆插件"不是口号，130 个内置插件打底
 
-开源当天，社区就出了一个叫 **dsh-better-sidebar** 的插件（发布在 npm，一条命令安装）：
+**官方发布时 Web 版就内置了 130 个插件**（实测 `dsh --profile web --dump-default-config` 数出 130 个 `- id:` 条目；headless 版 81 个）——插件生态不是从零起步，是官方先铺好了底。而**灰度测试期间社区就已经有人在做插件**了，开源时即可安装，比如 **dsh-better-sidebar**（发布在 npm，一条命令安装）：
 
 ```bash
 dsh plugin --profile web add dsh-better-sidebar
@@ -115,7 +115,7 @@ dsh plugin --profile web add dsh-better-sidebar
 
 安装过程中也踩到 README 预警的坑：pnpm 的 `strict-dep-builds` 拦了 node-pty 的构建脚本，需要 `pnpm approve-builds --all` 放行。README 一字不差地预告了这个坑——插件文档的成熟度也是"社区已形成"的证据。
 
-**"一切皆插件"的验证结论：真的。** 工具是插件、模型是插件、UI 是插件、连侧边栏都是插件——而且 6 小时就有第三方把它改成 IDE。这种扩展性上限，一体式产品（Codex 没有插件体系）给不了。
+**"一切皆插件"的验证结论：真的。** 工具是插件、模型是插件、UI 是插件、连侧边栏都是插件——官方 130 个插件打底 + 灰度期就有社区插件改 UI，这种扩展性上限，一体式产品（Codex 没有插件体系）给不了。
 
 ## 六、会话与数据：事件溯源，眼见为实
 
@@ -146,7 +146,7 @@ zstd 压缩的 **append-only 事件日志**，每个会话一个目录。解压�
 这一轮实测下来，我们自己的结论是：
 
 - **它确实不是 Codex 的竞品**。Codex 交付的是"拿来即用的 Agent"；DSH 交付的是"组装 Agent 的运行时"——预设、profile、插件、事件溯源，它把大量结构暴露给你，让你自己决定 Agent 是谁。用它的官方公式：**Agent = Model + Harness**，模型是灵魂，Harness 是让模型在真实场景持续工作的能力。它是**基础设施**，不是产品
-- **惊艳的地方**：插件生态的上限（6 小时长出 IDE 级插件）、事件溯源的彻底性（策略状态都进日志）、agent 的自我验收闭环
+- **惊艳的地方**：插件生态的上限（官方内置 130 插件 + 灰度期社区插件）、事件溯源的彻底性（策略状态都进日志）、agent 的自我验收闭环
 - **劝退的地方**：慢（半小时级任务 + 1.1M token 输入）、无 TUI（交互前门只有 Web）、配置门槛（模型、预设、权限都要自己摆弄）、预览版说变就变（rc.5 明确"THERE WILL BE COMPATIBILITY-BREAKING CHANGES"）
 - **给自动化用户的提醒**：权限边界是硬约束，无人值守场景先解决审批（策略从 ask 改成更宽松的模式，或补审批人）
 
