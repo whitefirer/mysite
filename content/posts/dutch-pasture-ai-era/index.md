@@ -9,7 +9,7 @@ author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: false
 hiddenFromHomePage: false
-sticky: true
+sticky: false
 
 tags: ["ai", "infrastructure", "monopoly", "thoughts"]
 series: ["ai-zatan"]
