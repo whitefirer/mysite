@@ -1,9 +1,9 @@
 ---
-title: "DeepSeek Harness 全拆解：开源首日破 3 万 star 的 Agent 运行时，特别在哪"
+title: "DeepSeek Harness 全拆解：30 小时 9 万+ star 的 Agent 运行时，特别在哪"
 subtitle: "一个 219 包插件化架构的完整解剖——服务对象是模型自己，为自进化铺路"
-description: "DeepSeek 开源 dsh 首日破 3 万 star。本文从决策记录与源码逐层拆解：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及它真正服务的对象：模型自己（为自进化铺路）。：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及'它为什么不是 Codex 竞品'的架构级答案。"
+description: "DeepSeek 开源 dsh，首日破 3 万 star、30 小时破 9 万。本文从决策记录与源码逐层拆解：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及它真正服务的对象：模型自己（为自进化铺路）。"
 date: 2026-08-14 07:31:12+08:00
-lastmod: 2026-08-14 19:00:00+08:00
+lastmod: 2026-08-15 01:47:00+08:00
 slug: "deepseek-harness-deep-dive"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
