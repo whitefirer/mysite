@@ -1,9 +1,9 @@
 ---
-title: "DeepSeek Harness 全拆解：开源首日破 3 万 star 的 Agent 运行时，硬在哪"
-subtitle: "事件溯源会话、surface 阴影压缩、fail-closed 沙箱、automation-only 的 ACP——一个 219 包插件化架构的完整解剖"
-description: "DeepSeek 开源 dsh 首日破 3 万 star。本文从决策记录与源码逐层拆解：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及'它为什么不是 Codex 竞品'的架构级答案。"
+title: "DeepSeek Harness 全拆解：开源首日破 3 万 star 的 Agent 运行时，特别在哪"
+subtitle: "一个 219 包插件化架构的完整解剖——服务对象是模型自己，为自进化铺路"
+description: "DeepSeek 开源 dsh 首日破 3 万 star。本文从决策记录与源码逐层拆解：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及它真正服务的对象：模型自己（为自进化铺路）。：一个引擎五个出口、Cordis 插件化地基、事件溯源会话模型、压缩阴影机制、四象限 RPC、landlock 沙箱、hooks 兼容层——以及'它为什么不是 Codex 竞品'的架构级答案。"
 date: 2026-08-14 07:31:12+08:00
-lastmod: 2026-08-14 07:31:12+08:00
+lastmod: 2026-08-14 19:00:00+08:00
 slug: "deepseek-harness-deep-dive"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
@@ -410,6 +410,10 @@ dsh 的工程过程本身值得单独记录：
 | ACP automation-only | UI 职责与自动化协议分家；自动化契约只放最小文本 / 任务 / 权限面，会话归属与取消按精确对象隔离 |
 | 四象限 RPC + rpcId 全链路 | 审批 / 问答帧稳定 id + 重连回放；方法表单一事实源，加方法 = 机械改动，错误码穷举即类型 |
 | hooks 协议语义库 | matcher / 退出码 / merge 优先级（deny > ask > allow）是现成规格书；拒绝留持久审计事件；hook 配置加载失败 fail loud |
+
+## 十三、更深一层：它服务的对象是模型自己
+
+往更深一层看：它服务的对象可能既不是 C 端用户、也不是普通开发者——而是**模型自己**。让 harness 的一切都可替换、可卸载、可逆转，本质是为"agent 在运行中优化自己的 harness"铺路：自进化需要的不只是能力，而是**结构上允许被替换**。这个视角下，DSH 和 Prime Agent（同样主打 harness 自迭代）指向同一条路线——harness 从"用模型"变成"被模型改"。这也解释了它的设计为何对日常使用显得"过度"：那套复杂度不是为今天的人类用户准备的，是为明天的模型准备的。
 
 ## 结语
 
