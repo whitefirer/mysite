@@ -12,6 +12,7 @@ hiddenFromHomePage: false
 
 tags: ["tech", "ai", "plugin", "architecture", "cordis", "paper"]
 categories: ["Tech"]
+series: ["deepseek-harness"]
 ---
 
 > 2026-08-13，DeepSeek 开源 deepseek-harness（dsh），开源首日即破 3 万 star。它的地基是一个叫 Cordis 的插件框架——而 Cordis 背后，是一篇 80 页的学术论文：《A Programming Paradigm for Spatiotemporal Composability》（时空可组合性编程范式）。本文拆解这篇论文。

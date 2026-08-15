@@ -50,6 +50,15 @@
     url = "/series/harness-engineering/"
     title = ""
   [[zh-cn.menu.main]]
+    weight = 3
+    parent = "ai-programming"
+    identifier = "ai-programming-dsh"
+    pre = ""
+    post = ""
+    name = "DeepSeek Harness"
+    url = "/series/deepseek-harness/"
+    title = ""
+  [[zh-cn.menu.main]]
     weight = 4
     identifier = "posts"
     pre = ""

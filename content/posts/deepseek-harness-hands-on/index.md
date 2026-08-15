@@ -13,6 +13,7 @@ sticky: true
 
 tags: ["tech", "ai", "deepseek", "harness", "agent", "plugin", "event-sourcing"]
 categories: ["Tech"]
+series: ["deepseek-harness"]
 ---
 
 
