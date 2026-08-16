@@ -2,12 +2,12 @@
 title: "把 DeepSeek Harness 开放到局域网：手机访问的几个坑与解法清单"
 subtitle: "官方还没放开 --host 0.0.0.0，用反代自己挂是主流过渡方案；但手机一打开就白屏、授权按钮失效——根因都指向同一份规范：安全上下文（Secure Contexts）"
 description: "把 DeepSeek Harness 用带鉴权的反向代理挂进内网后，PC 一切正常，手机却接连踩坑：先是 crypto.randomUUID is not a function 直接白屏，后是文件授权按钮失效。两坑同根——安全上下文规范把现代 Web API 分成「可 polyfill」和「权限门控」两类。本文记录排查过程、反代层注入 polyfill 的实现（含一个 Accept-Encoding 的坑）、应用层降级方案，以及一份局域网访问解法清单。"
-date: 2026-08-15 23:02:04+08:00
-lastmod: 2026-08-15 23:02:04+08:00
+date: 2026-08-16 12:47:26+08:00
+lastmod: 2026-08-16 12:47:26+08:00
 slug: "dsh-lan-access"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 sticky: false
 
