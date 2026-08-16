@@ -3,7 +3,7 @@ title: "把 DeepSeek Harness 开放到局域网：手机访问的几个坑与解
 subtitle: "官方还没放开 --host 0.0.0.0，用反代自己挂是主流过渡方案；但手机一打开就白屏、授权按钮失效——根因都指向同一份规范：安全上下文（Secure Contexts）"
 description: "把 DeepSeek Harness 用带鉴权的反向代理挂进内网后，PC 一切正常，手机却接连踩坑：先是 crypto.randomUUID is not a function 直接白屏，后是文件授权按钮失效。两坑同根——安全上下文规范把现代 Web API 分成「可 polyfill」和「权限门控」两类。本文记录排查过程、反代层注入 polyfill 的实现（含一个 Accept-Encoding 的坑）、应用层降级方案，以及一份局域网访问解法清单。"
 date: 2026-08-16 12:47:26+08:00
-lastmod: 2026-08-16 13:06:31+08:00
+lastmod: 2026-08-16 13:24:53+08:00
 slug: "dsh-lan-access"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
@@ -161,12 +161,12 @@ pr.Out.Header.Set("Accept-Encoding", "identity")
 
 ## 七、附：一个 Python 最小实现（单文件，带鉴权）
 
-不想搭工作台的话，「HTTPS 反代 + 简单鉴权」一个 Python 脚本就够（完整版在 cenacle 仓库 `tests/debug/https_proxy.py`，约 150 行）。四个要点：
+不想搭工作台的话，「HTTPS 反代 + 简单鉴权」一个 Python 脚本就够（完整版在 cenacle 仓库 `tests/debug/https_proxy.py`，约 240 行）。四个要点：
 
 - **用 aiohttp 而不是标准库**——WebSocket 必须透传（dsh 的终端流走 WS，不透传就是哑终端），标准库手写帧转发不值得；
-- 普通请求整源透传（零改写、流式回传），剥 hop-by-hop 头；
+- 普通请求流式透传、剥 hop-by-hop 头；唯一的改写是 HTML 一律注入 `crypto.randomUUID` polyfill（脚本自带存在性判断，HTTPS 安全上下文下是 no-op，所以两种模式同一套逻辑）；
 - Basic Auth：401 + `WWW-Authenticate` 头，浏览器自带弹窗，演示/自用足够；
-- 443 对外 HTTPS，80 只做 301 跳转；<1024 端口要 root 或 `cap_net_bind_service`，调试期用 8443/8080 也一样。
+- `--mode https`（默认）：443 对外 HTTPS，80 只做 301 跳转；`--mode http`：纯 HTTP 反代 + polyfill，不用碰证书。<1024 端口要 root 或 `cap_net_bind_service`，调试期用 8443/8080 也一样。
 
 核心代码：
 
@@ -187,6 +187,14 @@ async def proxy_http(req, upstream):
     async with sess.request(req.method, upstream + str(req.rel_url),
                             headers=headers, data=await req.read(),
                             allow_redirects=False) as up:
+        # HTML 一律注入 polyfill；aiohttp 已自动解压，必须摘掉
+        # Content-Encoding/Content-Length 再重写长度
+        if "text/html" in up.headers.get("Content-Type", "").lower():
+            page = await up.read()
+            page = inject_head(page, POLYFILL)   # 插到 <head> 之后
+            out_headers = {k: v for k, v in up.headers.items()
+                           if k.lower() not in HOP | {"content-encoding", "content-length", "etag"}}
+            return web.Response(status=up.status, body=page, headers=out_headers)
         out = web.StreamResponse(status=up.status)
         for k, v in up.headers.items():
             if k.lower() not in HOP:
@@ -222,6 +230,14 @@ pip install aiohttp
 sudo python3 https_proxy.py --https-port 443 --http-port 80 \
   --cert ~/.cenacle/tls/fullchain.pem --key ~/.cenacle/tls/privkey.pem
 ```
+
+不需要权限门控类 API（比如不用 browser-fs 的授权读写）的话，**纯 HTTP 模式**一行就够，证书、防火墙、端口转发全省：
+
+```bash
+python3 https_proxy.py --mode http --http-port 8080
+```
+
+手机开 `http://内网IP:8080` 就能进 dsh——polyfill 修好白屏；但 `showDirectoryPicker` 这类 API 在非安全上下文里整个对象不存在，那时再回 HTTPS 模式。
 
 如果你的开发机和我一样是 **Windows 宿主上的 QEMU Debian 虚拟机**（用户模式网络是 NAT，虚拟机拿到 `10.0.2.x`，局域网 IP 在 Windows 宿主上），虚拟机里监听好还不够，要让宿主的 443 能进虚拟机。QEMU 侧用 hostfwd 做端口转发——**运行中的虚拟机不用重启**，在 QEMU monitor 里热添加即可：
 
