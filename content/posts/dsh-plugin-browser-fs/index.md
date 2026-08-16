@@ -2,8 +2,8 @@
 title: "给 DeepSeek Harness 写插件：让远程 Agent 读写你电脑上的文件"
 subtitle: "从插件系统解剖到实战：为什么「双面插件」是唯一路线、File System Access API 怎么接、以及那些 README 里不会写的坑"
 description: "dsh 开源几天插件目录站收录已破千，但所有插件读的都是 dsh 宿主机的文件——远程部署时 Agent 摸不到你这台电脑。本文从零写一个真实可用的插件 dsh-browser-fs：浏览器授权一个本地目录，Agent 就能 list/read/write。过程中把 dsh 插件系统拆给你看：Cordis 生命周期、host/client 双面结构、工具注册、WS 中继、创造模式是什么，以及 secure context 等四个坑。"
-date: 2026-08-16 04:11:39+08:00
-lastmod: 2026-08-16 04:11:39+08:00
+date: 2026-08-15 23:14:52+08:00
+lastmod: 2026-08-15 23:14:52+08:00
 slug: "dsh-plugin-browser-fs"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
@@ -164,9 +164,11 @@ for await (const entry of dir.values()) { /* ... */ }
 
 ## 六、装机与验证
 
-安装一行命令（file: 依赖是打包拷贝，改动后要重装+重启 dsh）：
+安装一行命令（远程装的是入库的构建产物，开箱即用；file: 是本地开发路径，改动后要重装+重启 dsh）：
 
 ```bash
+dsh plugin --profile web add github:whitefirer/dsh-browser-fs   # 从 GitHub 安装（推荐）
+# 本地开发/改代码时用 file: 路径重装：
 dsh plugin --profile web add file:/path/to/dsh-browser-fs
 ```
 
