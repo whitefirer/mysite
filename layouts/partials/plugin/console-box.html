@@ -102,9 +102,9 @@
             term.open(document.querySelector('.demo .inner'));
             var isWebglEnabled = false;
             try {
-                const webgl = new window.WebglAddon();
+                const webgl = new window.WebglAddon.WebglAddon();
                 term.loadAddon(webgl);
-                var wl = new WebLinksAddon();
+                var wl = new WebLinksAddon.WebLinksAddon();
                 term.loadAddon(wl);
                 term.registerLinkProvider({provideLinks:function(n,c){
                     var l=term.buffer.active.getLine(n);
