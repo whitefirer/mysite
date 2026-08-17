@@ -78,7 +78,7 @@
 
         {{- /* Featured image */ -}}
         {{- $image := $params.featuredimage -}}
-        {{- with .Resources.GetMatch "featured-image" -}}
+        {{- with .Resources.GetMatch "featured-image*" -}}
             {{- $image = .RelPermalink -}}
         {{- end -}}
         {{- with $image -}}
