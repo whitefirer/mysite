@@ -55,6 +55,7 @@
 
         // ---------- state ----------
         let inputBuf = '';
+        let cursorPos = 0; // index into inputBuf
         let history = [];
         let historyIdx = -1;
         let busy = false;
@@ -62,6 +63,41 @@
         function prompt() {
             write(PROMPT);
             inputBuf = '';
+            cursorPos = 0;
+        }
+
+        // display-cell width: CJK wide chars occupy 2 cells
+        const wcwidth = (ch) => /[ᄀ-ᅟ⺀-鿏가-힣豈-﫿︰-﹏＀-｠￠-￦]/.test(ch) ? 2 : 1;
+        const strWidth = (s) => s.split('').reduce((n, ch) => n + wcwidth(ch), 0);
+
+        // full-line redraw, then position the cursor at cursorPos
+        function editLine(newBuf, newPos) {
+            inputBuf = newBuf;
+            cursorPos = newPos;
+            write('\r\x1b[2K' + PROMPT + inputBuf);
+            const tailWidth = strWidth(inputBuf.slice(cursorPos));
+            if (tailWidth > 0) write('\x1b[' + tailWidth + 'D');
+        }
+
+        function moveLeft() {
+            if (cursorPos <= 0) return;
+            cursorPos--;
+            write('\x1b[' + wcwidth(inputBuf[cursorPos]) + 'D');
+        }
+        function moveRight() {
+            if (cursorPos >= inputBuf.length) return;
+            write('\x1b[' + wcwidth(inputBuf[cursorPos]) + 'C');
+            cursorPos++;
+        }
+        function moveHome() {
+            const w = strWidth(inputBuf.slice(0, cursorPos));
+            if (w > 0) write('\x1b[' + w + 'D');
+            cursorPos = 0;
+        }
+        function moveEnd() {
+            const w = strWidth(inputBuf.slice(cursorPos));
+            if (w > 0) write('\x1b[' + w + 'C');
+            cursorPos = inputBuf.length;
         }
 
         // ---------- commands ----------
@@ -128,6 +164,7 @@
             historyIdx = next;
             write('\r\x1b[2K' + PROMPT + history[historyIdx]);
             inputBuf = history[historyIdx];
+            cursorPos = inputBuf.length;
         }
 
         term.onData(async (data) => {
@@ -139,6 +176,17 @@
             // escape sequences arrive as one string; handle before the char loop
             if (data === '\x1b[A') return recallHistory(-1);
             if (data === '\x1b[B') return recallHistory(1);
+            if (data === '\x1b[D') return moveLeft();
+            if (data === '\x1b[C') return moveRight();
+            if (data === '\x1b[H' || data === '\x1bOH' || data === '\x1b[1~') return moveHome();
+            if (data === '\x1b[F' || data === '\x1bOF' || data === '\x1b[4~') return moveEnd();
+            if (data === '\x1b[3~') {
+                // Delete key: remove the char under the cursor
+                if (cursorPos < inputBuf.length) {
+                    editLine(inputBuf.slice(0, cursorPos) + inputBuf.slice(cursorPos + 1), cursorPos);
+                }
+                return;
+            }
             if (data.startsWith('\x1b')) return; // ignore other escape sequences
             for (const ch of data) {
                 if (ch === '\r') {
@@ -154,13 +202,18 @@
                         prompt();
                     }
                 } else if (ch === '\u007F' || ch === '\b') {
-                    if (inputBuf.length > 0) {
-                        inputBuf = inputBuf.slice(0, -1);
-                        write('\b \b');
+                    if (cursorPos > 0) {
+                        editLine(inputBuf.slice(0, cursorPos - 1) + inputBuf.slice(cursorPos), cursorPos - 1);
                     }
                 } else if (ch >= ' ') {
-                    inputBuf += ch;
-                    write(ch);
+                    if (cursorPos === inputBuf.length) {
+                        // fast path: append at end (covers paste of long strings)
+                        inputBuf += ch;
+                        cursorPos++;
+                        write(ch);
+                    } else {
+                        editLine(inputBuf.slice(0, cursorPos) + ch + inputBuf.slice(cursorPos), cursorPos + 1);
+                    }
                 }
             }
         });
