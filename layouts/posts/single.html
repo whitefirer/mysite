@@ -140,6 +140,9 @@
         {{- /* Dev-only: in-page editor (never rendered in production) */ -}}
         {{- partial "dev-editor.html" . -}}
 
+        {{- /* 选中文字生成分享卡片 */ -}}
+        {{- partial "plugin/share-card.html" . -}}
+
         {{- /* Footer */ -}}
         {{- partial "single/footer.html" . -}}
 
