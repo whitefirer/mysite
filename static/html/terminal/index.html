@@ -52,6 +52,10 @@
         const TOOLS_JSON = JSON.stringify(TOOLS);
 
         const term = new Terminal({
+            linkHandler: {
+                // bypass xterm's default confirm() dialog for OSC8 links
+                activate: (event, text) => window.open(text, '_blank'),
+            },
             cursorBlink: true,
             fontFamily: '"Cascadia Code", Menlo, Consolas, monospace',
             fontSize: 14,
@@ -136,6 +140,11 @@
             if (!q) return [];
             // whitespace terms for latin, plus the raw string as one term for CJK
             const terms = q.split(/\s+/).filter(Boolean);
+            // extract latin/digit runs too, so CJK-wrapped keywords like
+            // 找一下deepseek的文章 still match as "deepseek"
+            for (const m of q.matchAll(/[a-z0-9][a-z0-9._+-]*/g)) {
+                if (!terms.includes(m[0])) terms.push(m[0]);
+            }
             if (!terms.includes(q)) terms.push(q);
             return posts
                 .map(p => ({ p, s: scorePost(p, terms) }))
@@ -152,7 +161,9 @@
                 return;
             }
             list.forEach((p, i) => {
-                writeln(`  ${yellow('[' + (i + 1) + ']')} ${cyan(p.title)}`);
+                // OSC 8 hyperlink: title itself is clickable
+                const link = `\x1b]8;;${location.origin + p.uri}\x07${cyan(p.title)}\x1b]8;;\x07`;
+                writeln(`  ${yellow('[' + (i + 1) + ']')} ${link}`);
                 writeln(`      ${dim(p.date + '  ' + (p.tags || []).join(', '))}`);
             });
             writeln(dim('输入 open <序号> 打开对应文章'));
