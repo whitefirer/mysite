@@ -1,9 +1,9 @@
 ---
-title: "不烧 API 的博客 AI：给终端装一颗 14MB 的端侧大脑"
+title: "不烧 token 的博客 AI：给终端装一颗 14MB 的端侧大脑"
 subtitle: "needle：一颗 45M 参数的工具调用模型，推理全在访客浏览器里，不花一分钱 API"
 description: "记录把 needle（cactus-compute 的 45M 工具调用模型）接进 Hugo 博客终端的全过程：worker 架构、tools JSON 设计、needle1 的中文乱码考古、locale 救回 needle2 的 decode 失控、拒答改写与指代消解这些规则补丁，以及端侧语义搜索兜底。最后聊聊这颗模型能跑在什么硬件上，以及跑不动的设备该怎么办。"
 date: 2026-08-18 01:30:00+08:00
-lastmod: 2026-08-18 01:30:00+08:00
+lastmod: 2026-08-19 00:44:00+08:00
 slug: "blog-terminal-needle-edge-ai"
 featuredImagePreview: "cover.png"
 author: "whitefirer"
@@ -17,7 +17,7 @@ tags: ["tech", "ai", "needle", "wasm", "edge-ai", "llm", "hugo"]
 categories: ["Tech"]
 ---
 
-## 一、动机：想要 AI，但不想烧 API
+## 一、动机：想要 AI，但不想烧 token
 
 这个博客的首页有个终端，本来就是放着玩的。后来想给它加点"AI 助手"的味道——访客输入「找一下 deepseek 的文章」，终端自己检索、列出结果、附上链接。
 
