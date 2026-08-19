@@ -30,6 +30,10 @@ PC 端：菜单、换皮肤、唠叨气泡、连喊三声的残影。手机端�
 <video controls preload="metadata" src="demo-phone-light.mp4" style="width:50%;border-radius:8px"></video>
 </div>
 
+**不装 dsh 也能玩到它**：这插件是纯客户端的，同一套代码原样跑在裸页面上就是个小游戏——戳下面的试玩窗（或[打开全屏版](/niulai-pet/)），戳牛、跑个模拟任务，等它喊妈（公众号读者点「阅读原文」直达）：
+
+<iframe src="/niulai-pet/" style="width:100%;height:560px;border:0;border-radius:8px;background:#0d1126"></iframe>
+
 不认识这头牛的同学补一下背景：《牛来》是最近的一个现象级奇观——一部画风粗糙的 3D 动画片，上映前十天全国票房不到一万块，被短视频带火后一周直冲千万。全网看完都在骂，骂完接着看，号称"看了后悔 86 分钟，不看后悔一辈子"，[李永乐老师还专门讲过它爆火背后的禁果效应](https://mp.weixin.qq.com/s/_qiAyJZUjUQSUwAeSHELfQ)。主角那头丑得很有特色的黄牛，喊"妈"是名场面，二创鬼畜剪辑满天飞。我把它养进了 DeepSeek Harness（dsh）的 web 界面里——就是我最近连着折腾了好几篇的那个 agent 工作台。
 
 ## 二、为什么不是通知，是桌宠
@@ -63,6 +67,8 @@ dsh 跑任务时我经常切到别的桌面干活，完成通知这事我做过�
 | dsh-niulai-pet | 纯 client | 界面层行为，订阅只读服务 |
 
 桌宠唯一需要的外部信号是"哪个会话在跑/跑完了"，dsh client runtime 本来就向插件发布 `sessions.list` 快照——订阅它即可，一行 host 代码都不用写。纯客户端的好处极其实在：**改完代码 `npm run build` 完刷新页面就生效，永远不用重启宿主**。
+
+另一个红利开头已经看到了：把 sessions 订阅换成一个模拟任务驱动，`pet.ts` 一行没改就跑在裸页面上——本文的在线试玩页就是这么来的，不是什么另写的复刻版。
 
 任务完成的判定就两条：`running` 从 true 翻成 false（当前会话跑完），或 `completed` 新置位（后台会话完成，即侧边栏绿点的同一信号）。宿主太旧没有 sessions 服务时降级成纯手动戳。
 
