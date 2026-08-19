@@ -3,12 +3,12 @@ title: "任务一完成，它就蹦出来喊「妈」——给 DeepSeek Harness 
 subtitle: "一个纯客户端插件的诞生：抠图修蹄子、喊声基频鉴假、嘴型时间线、WAAPI 动画三连坑，外加三只手绘小动物"
 description: "给 dsh web 的角落养了一头《牛来》桌宠：平时呼吸眨眼打盹吐槽，agent 任务一完成就蹦出来喊「妈~~妈~~」。全程记录：5 个皮肤（含 DeepSeek 蓝虎鲸）、签名动作系统、WebAudio 合成叫声、ffmpeg 七档降噪，以及动画/素材/录屏路上踩的所有坑。"
 date: 2026-08-19 02:30:00+08:00
-lastmod: 2026-08-19 02:30:00+08:00
+lastmod: 2026-08-19 18:47:00+08:00
 slug: "dsh-niulai-pet"
 featuredImagePreview: "cover.png"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
-draft: true
+draft: false
 hiddenFromHomePage: false
 sticky: false
 
