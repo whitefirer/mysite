@@ -3,7 +3,7 @@ title: "任务一完成，它就蹦出来喊「妈」——给 DeepSeek Harness 
 subtitle: "一个纯客户端插件的诞生：抠图修蹄子、喊声基频鉴假、嘴型时间线、WAAPI 动画三连坑，外加三只手绘小动物"
 description: "给 dsh web 的角落养了一头《牛来》桌宠：平时呼吸眨眼打盹吐槽，agent 任务一完成就蹦出来喊「妈～～妈～～」。全程记录：6 个皮肤（含 DeepSeek 蓝虎鲸）、签名动作系统、WebAudio 合成叫声、ffmpeg 七档降噪，以及动画/素材/录屏路上踩的所有坑。"
 date: 2026-08-19 02:30:00+08:00
-lastmod: 2026-08-19 18:47:00+08:00
+lastmod: 2026-08-20 03:04:41+08:00
 slug: "dsh-niulai-pet"
 featuredImagePreview: "cover.png"
 author: "whitefirer"
@@ -133,7 +133,8 @@ dsh 跑任务时我经常切到别的桌面干活，完成通知这事我做过�
 一行装上：
 
 ```sh
-dsh plugin --profile web add github:whitefirer/dsh-niulai-pet
+dsh plugin --profile web add dsh-niulai-pet                     # npm（推荐，国内网络更稳）
+dsh plugin --profile web add github:whitefirer/dsh-niulai-pet   # 或从 GitHub
 ```
 
 构建产物已入库，安装零脚本；首次安装重启一次 dsh web，之后升级刷新页面即生效。奶牛/熊猫/蓝鲸三只手绘的 SVG 源文件在仓库 `tools/drawn/` 里，随便拿去用。
