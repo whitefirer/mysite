@@ -130,4 +130,4 @@ dsh 跑任务时我经常切到别的桌面干活，完成通知这事我做过�
 
 至此我的 dsh 插件小系列凑齐了三种形态：读写文件的、上报通知的、纯耍宝的。说实话，最后一个是我打开 dsh 时嘴角上扬幅度最大的一个。
 
-下一步：自定义皮肤（导入自己的图和声音）、试试发插件市场。仓库在 [github.com/whitefirer/dsh-niulai-pet](https://github.com/whitefirer/dsh-niulai-pet)，素材全入库，装上即玩。
+下一步：自定义皮肤（导入自己的图和声音）、按住它说话的语音控制（识别完直接发给当前会话，STT 选型调研已经躺在仓库 `docs/roadmap.md` 里）、插件市场收录（awesome 门槛是仓库满一天 + 提交数 ≥10，CI 自动校验，PR 已在路上）。仓库在 [github.com/whitefirer/dsh-niulai-pet](https://github.com/whitefirer/dsh-niulai-pet)，素材全入库，装上即玩。
