@@ -21,7 +21,14 @@ series: ["deepseek-harness"]
 
 agent 干完活的那一刻，屏幕角落的小牛会蹦起来，字正腔圆地喊一嗓子「妈~~妈~~」——尾音拖足，嘴型跟上，中气十足：
 
-<video controls preload="metadata" src="demo.mp4" style="width:100%;border-radius:8px"></video>
+<video controls preload="metadata" src="demo-pc.mp4" style="width:100%;border-radius:8px"></video>
+
+PC 端：菜单、换皮肤、唠叨气泡、连喊三声的残影。手机端一样欢实——深色那条录到了蓝鲸喷水飞圈，浅色那条录到了奶牛和熊猫开嗓，两条的结尾都是「发消息 → agent 回完 → 蹦出来喊妈」的完整闭环：
+
+<div style="display:flex;gap:8px">
+<video controls preload="metadata" src="demo-phone-dark.mp4" style="width:50%;border-radius:8px"></video>
+<video controls preload="metadata" src="demo-phone-light.mp4" style="width:50%;border-radius:8px"></video>
+</div>
 
 不认识这头牛的同学补一下背景：《牛来》是最近的一个现象级奇观——一部画风粗糙的 3D 动画片，上映前十天全国票房不到一万块，被短视频带火后一周直冲千万。全网看完都在骂，骂完接着看，号称"看了后悔 86 分钟，不看后悔一辈子"，[李永乐老师还专门讲过它爆火背后的禁果效应](https://mp.weixin.qq.com/s/_qiAyJZUjUQSUwAeSHELfQ)。主角那头丑得很有特色的黄牛，喊"妈"是名场面，二创鬼畜剪辑满天飞。我把它养进了 DeepSeek Harness（dsh）的 web 界面里——就是我最近连着折腾了好几篇的那个 agent 工作台。
 
@@ -100,11 +107,11 @@ dsh 跑任务时我经常切到别的桌面干活，完成通知这事我做过�
 
 奶牛、熊猫、鲸鱼都是手写 SVG 渲染成 PNG，迭代了好几轮：鲸鱼的尾鳍一度像兔子耳朵，熊猫的竹子一度像拿着话筒。家族一致性靠三件套：同款描边色、大眼双高光、粉腮红。
 
-### 录视频：系统声音它不出来
+### 录视频：手机录屏它不出声
 
-文章开头那条视频的录制本身也是一场仗。桌宠的叫声走系统音频，但这台 QEMU 虚拟机里 PulseAudio 的 monitor 源**一个字节都录不到**（record 流挂上就出零数据，至今没查明是管道还是 PipeWire 的锅）。
+开头三条视频的录制本身也是一场仗。PC 版一次成型（宿主机录屏能带上系统声音），但两条手机版遇到了新问题：**手机录屏录不到系统内放**——屏幕录像走的是麦克风，桌宠喊得再字正腔圆，录出来也只剩 -46dB 的环境底噪。
 
-最后的解法很笨但可靠：录屏脚本在每次开喊的瞬间记下精确时间戳，后期把无损音源按时间戳 `adelay` 混回去——音画对齐误差百毫秒级，音质还比现场采的干净。
+解法是时间戳配音法的升级版：先按 0.25 秒一帧抽接触表，把每个气泡（「妈~~妈~~」「哞——！」「嗯嗯！」「噗——！」）出现的精确时刻抠出来；声源不走录音——「妈~~妈~~」直接用仓库里的无损 mp3，奶牛/熊猫/蓝鲸的叫声则把插件里的 WebAudio 合成代码原样搬进 OfflineAudioContext 离线渲染成 WAV（和运行时发出的声音逐字节一致、零底噪）；最后按时间戳 `adelay` 混回去，顺手把 HEVC 转成全浏览器通吃的 h264。音画对齐误差百毫秒级，音质比现场采的干净一个数量级。
 
 ## 六、一些小但重要的设计
 
