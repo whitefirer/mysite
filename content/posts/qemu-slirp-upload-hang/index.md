@@ -3,7 +3,7 @@ title: "QEMU slirp 上传卡死 300 秒：从应用层一路追到网络层的�
 subtitle: "上传稍大的文件就挂起约 5 分钟——小图正常、localhost 正常、局域网 IP 卡死。一次从 sharp 假说、浏览器差异、multipart 解析，最终定位到 QEMU slirp TCP 缺陷的完整排查"
 description: "QEMU 虚拟机走 slirp 用户态网络时，单请求 body 超过 ~256KB 会 TCP 卡死约 300 秒。本文记录从应用层（sharp 挂起假说）→ 浏览器差异 → multipart 解析 → 网络层的完整排查过程，以及应用层分块上传的解决方案。"
 date: 2026-08-13 23:00:00+08:00
-lastmod: 2026-08-13 23:00:00+08:00
+lastmod: 2026-09-16 14:30:00+08:00
 slug: "qemu-slirp-upload-hang"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
@@ -88,6 +88,29 @@ localhost POST 500KB   → 46ms 完成
 4. **localhost 正常 ≠ 局域网 IP 正常**：本机回环路径绕开了很多网络栈问题，测试一定要覆盖真实访问路径
 5. **应用层绕开 vs 网络层治本**：分块上传是"绕过缺陷"而非"修复缺陷"——>256KB 的响应下载等其他场景同样会卡。治本需要改 VM 网络模式，作为后续事项记录
 
-## 附：治本方案（网络层）
+## 附：治本方案（网络层，2026-09-16 更新）
 
-QEMU slirp 改 bridged/TAP 需要：Windows 宿主侧安装 TAP 驱动（WinPcap/Npcap/OpenVPN TAP）、修改 QEMU `-netdev` 参数、重启 VM。Windows 下 TAP 驱动兼容性一般，且 VM 重启有断连风险——对开发环境来说，应用层分块已经足够，网络改造等 QEMU 配置需要变动时再一并处理。
+> 补充背景：这台开发机实际是 TenBox VM（自研 C++ VMM，WHVP/HVF/KVM 三后端），virtio-net 后端链的是 libslirp——和 QEMU 用户态网络是同一个栈，缺陷通用。2026-09 共享存储池（JuiceFS→RustFS）落地后，slirp 又贡献了两个新数据点：**下载方向缺陷**（hostfwd 入向连接的回包走 guest 出站，实测下载 0.83MB/s vs 上传 26MB/s）和 **tailscale UDP 打洞失败**（双 VM 各自在 slirp NAT 后，直连建立不了，全程走杭州 DERP 中继）。再加上"每个新服务端口都要手工加转发"的日常痛点，网络层治本从"等以后"变成了正式路线。
+
+分三阶段，每阶段独立可交付：
+
+### 阶段一：gvproxy 平替 slirp（治慢、治病）
+
+[gvisor-tap-vsock](https://github.com/containers/gvisor-tap-vsock)（gvproxy）：Google gVisor 的用户态 TCP/IP 栈，和 slirp 同为**免驱动、免特权**的用户态 NAT，但 ICMP 可用、UDP 可靠、吞吐高一个量级、无 upload-hang 这族怪病（Lima/Podman machine/crc 的生产选择）。TenBox 接法：virtio-net 设备的以太帧流从 libslirp 改道 gvproxy 的 QEMU 兼容 socket（`--listen-qemu`）——设备代码是自己的，改道点很直白。验证：本用例（>256KB body）回归 + 存储池场景实测。
+
+### 阶段二：端口转发的自动化（治"手动开端口"）
+
+gvproxy 仍是 NAT，入向还要转发——但两层缓解：
+
+- **范围转发**：一条规则转一段（如 `30000-32000`），把"每个工作台/服务加一条"的日常操作一次性消掉（slirp hostfwd 语法本身支持，暴露到配置/界面即可，不依赖阶段一）
+- **动态转发**：gvproxy 有控制 API，VM 内新监听端口可自动建转发规则，"手动"二字消掉
+
+### 阶段三：bridged 可选后端（治概念，但分层）
+
+TAP/bridge 让 VM 拿真 LAN IP，**端口转发概念消失**，tailscale 直连也随之解锁。但它和 TenBox 的沙盒定位有张力，正确姿势是把网络暴露做成沙盒策略的显式维度：
+
+- **离线 / NAT（默认）/ Bridged（opt-in）** 三档；bridged 配 guest 防火墙默认拒入 + UI 明示"对局域网可见"
+- 用法分野：**agent 沙盒 VM 永远 NAT/离线；自己的基础设施 VM（存储、服务节点）才 bridged**——同一套定位，两类负载各取所需
+- Windows/WHVP 下的桥接不走 TAP 驱动老路（兼容性差），走 Hyper-V 可扩展交换机或 packet filter，细节待 spike
+
+**选择逻辑不变**：当年选应用层分块是对的（风险收益比）；现在路由线上是因为负载变了——存储池把网络从"开发便利性"变成了"生产热路径"。
