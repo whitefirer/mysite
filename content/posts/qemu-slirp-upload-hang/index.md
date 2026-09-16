@@ -1,22 +1,22 @@
 ---
-title: "QEMU slirp 上传卡死 300 秒：从应用层一路追到网络层的排查实录"
-subtitle: "上传稍大的文件就挂起约 5 分钟——小图正常、localhost 正常、局域网 IP 卡死。一次从 sharp 假说、浏览器差异、multipart 解析，最终定位到 QEMU slirp TCP 缺陷的完整排查"
-description: "QEMU 虚拟机走 slirp 用户态网络时，单请求 body 超过 ~256KB 会 TCP 卡死约 300 秒。本文记录从应用层（sharp 挂起假说）→ 浏览器差异 → multipart 解析 → 网络层的完整排查过程，以及应用层分块上传的解决方案。"
+title: "slirp 上传卡死 300 秒：从应用层一路追到网络层的排查实录"
+subtitle: "上传稍大的文件就挂起约 5 分钟——小图正常、localhost 正常、局域网 IP 卡死。一次从 sharp 假说、浏览器差异、multipart 解析，最终定位到 slirp TCP 缺陷的完整排查"
+description: "TenBox 虚拟机（virtio-net 链 libslirp 用户态网络）里，单请求 body 超过 ~256KB 会 TCP 卡死约 300 秒。本文记录从应用层（sharp 挂起假说）→ 浏览器差异 → multipart 解析 → 网络层的完整排查过程，以及应用层分块上传的解决方案。"
 date: 2026-08-13 23:00:00+08:00
-lastmod: 2026-09-16 14:30:00+08:00
+lastmod: 2026-09-17 01:30:00+08:00
 slug: "qemu-slirp-upload-hang"
 author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: true
 hiddenFromHomePage: false
 
-tags: ["tech", "qemu", "network", "debugging", "upload", "tcp"]
+tags: ["tech", "tenbox", "slirp", "network", "debugging", "upload", "tcp"]
 categories: ["Tech"]
 ---
 
 ## 现象
 
-在本地开发环境（QEMU 虚拟机）里，网页应用的上传功能有个诡异规律：
+在本地开发环境（TenBox VM）里，网页应用的上传功能有个诡异规律：
 
 - **小图（几 KB）：秒传成功**
 - **稍大一点的图（几百 KB）：前端等 60-120 秒超时取消，服务端日志显示请求处理了约 5 分钟（300 秒）后返回 200，但素材库看不到图**
@@ -64,7 +64,7 @@ localhost POST 500KB   → 46ms 完成
 300KB → 卡死
 ```
 
-**根因确认：QEMU slirp 用户态网络的 TCP 缺陷**。这台开发机是 QEMU/KVM 虚拟机（宿主机是 Windows），走 slirp user-net（`10.0.2.15`，网关 `10.0.2.2`）——slirp 是 QEMU 内置的用户态网络栈，纯软件模拟 TCP。**它对超过 ~256KB 的连续 body 传输存在缺陷**：TCP 发送窗口不增长，连接挂起约 300 秒。
+**根因确认：slirp 用户态网络的 TCP 缺陷**。这台开发机是 TenBox VM（自研 C++ VMM，宿主机是 Windows，走 WHVP 后端），virtio-net 后端链 libslirp（`10.0.2.15`，网关 `10.0.2.2`）——libslirp 就是 QEMU 内置用户态网络栈的独立化版本，纯软件模拟 TCP。**它对超过 ~256KB 的连续 body 传输存在缺陷**（后经 2026-09-17 对照实验进一步限定：该缺陷为 WHVP/Windows 平台特有，详见文末附录）：TCP 发送窗口不增长，连接挂起约 300 秒。
 
 为什么小图能过？小 body 落在单个 TCP 窗口内，一次发完不触发缺陷路径。
 
@@ -90,7 +90,11 @@ localhost POST 500KB   → 46ms 完成
 
 ## 附：治本方案（网络层，2026-09-16 更新）
 
-> 补充背景：这台开发机实际是 TenBox VM（自研 C++ VMM，WHVP/HVF/KVM 三后端），virtio-net 后端链的是 libslirp——和 QEMU 用户态网络是同一个栈，缺陷通用。2026-09 共享存储池（JuiceFS→RustFS）落地后，slirp 又贡献了两个新数据点：**下载方向缺陷**（hostfwd 入向连接的回包走 guest 出站，实测下载 0.83MB/s vs 上传 26MB/s）和 **tailscale UDP 打洞失败**（双 VM 各自在 slirp NAT 后，直连建立不了，全程走杭州 DERP 中继）。再加上"每个新服务端口都要手工加转发"的日常痛点，网络层治本从"等以后"变成了正式路线。
+> 补充背景：这台开发机是 TenBox VM（自研 C++ VMM，WHVP/HVF/KVM 三后端），virtio-net 后端链的是 libslirp——和 QEMU 用户态网络是同一个栈。2026-09 共享存储池（JuiceFS→RustFS）落地后，slirp 又贡献了两个新数据点：**下载方向缺陷**（hostfwd 入向连接的回包走 guest 出站，实测下载 0.83MB/s vs 上传 26MB/s）和 **tailscale UDP 打洞失败**（双 VM 各自在 slirp NAT 后，直连建立不了，全程走杭州 DERP 中继）。再加上"每个新服务端口都要手工加转发"的日常痛点，网络层治本从"等以后"变成了正式路线。
+
+> **平台范围（2026-09-17 对照实验）**：本缺陷（hostfwd 入站 >256KB body 卡死）在 Windows/WHVP 生产端稳定复现（宿主 curl 打转发端口：200KB 秒过、500KB 挂满超时、服务端永远读不满 body、连接悬尸）；但同一套代码在 **KVM 后端完全不复现**——v0.8.1 与 v0.8.2 两个版本、loopback 与跨机 LAN 两种拓扑、256KB→50MB 全档位含并发全部秒过。
+>
+> **治愈（2026-09-17 同日）**：Windows 宿主将 `tenbox-vm-runtime` 换成上游 main（0.8.2+）重编版本并重启 VM 后，同一拓扑 200KB/500KB/10MB 全部秒过——缺陷在 0.8.1→main 的 net 修复（socket 可读性检测）中被治愈。该 bug 仅存于 0.8.1 及更早版本，且只在 Windows/WHVP 平台的行为下触发（KVM 后端即便带病的 0.8.1 也不显现）。**处置：Windows 宿主升级到 0.8.2+ runtime 即根治；gvproxy 平替的剩余价值在吞吐、端口转发自动化与 tailscale 打洞，"治病"需求已消失。**
 
 分三阶段，每阶段独立可交付：
 
