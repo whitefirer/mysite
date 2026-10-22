@@ -9,7 +9,7 @@ author: "whitefirer"
 authorLink: "https://whitefirer.org"
 draft: false
 hiddenFromHomePage: false
-sticky: true
+sticky: false
 
 tags: ["tech", "ai", "deepseek", "harness", "agent", "plugin", "event-sourcing"]
 categories: ["Tech"]
