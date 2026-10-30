@@ -12,6 +12,7 @@ hiddenFromHomePage: false
 sticky: true
 
 tags: ["security", "tech", "cve", "php", "vulnerability", "ai", "supply-chain", "cloud"]
+series: ["ai-zatan"]
 categories: ["Tech"]
 toc:
   enable: true
